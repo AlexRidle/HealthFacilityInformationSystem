@@ -1,5 +1,4 @@
 <#include "security.ftl">
-<#import "login.ftl" as l>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
     <a class="navbar-brand" href="/">Health Facility</a>
@@ -26,6 +25,17 @@
         <#if known>
         <div class="navbar-text mr-3">Hello, ${name}!</div>
         </#if>
-        <@l.logout />
+        <@logout />
     </div>
 </nav>
+
+<#macro logout>
+    <#if known>
+<form action="/logout" method="post">
+    <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+    <button class="btn btn-outline-primary" type="submit">Sign Out</button>
+</form>
+    <#else>
+<a class="btn btn-outline-primary" href="/login">Sign in</a>
+    </#if>
+</#macro>

@@ -1,6 +1,7 @@
 <#import "parts/common.ftl" as c>
 
 <@c.page>
+<link rel="stylesheet" href="/static/style.css">
 <h5 class="mt-3 mb-3 text-center featurette-heading">List of users:</h5>
 <div class="mb-3 ml-3 mr-3">
     <table class="table table-striped">
@@ -13,7 +14,7 @@
             <th scope="col">Control</th>
         </tr>
         </thead>
-        </tbody>
+        <tbody>
         <#list users as user>
         <#--<tr onclick="window.location='/user/${user.id}';">-->
         <tr>
