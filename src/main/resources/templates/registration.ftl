@@ -43,11 +43,11 @@
         <div class="form-row">
             <div class="col-md-6 mb-3">
                 <label for="validationEmail">Email</label>
-                <input type="email" class="form-control" id="validationEmail" placeholder="email" required>
+                <input type="email" class="form-control" id="validationEmail" placeholder="email" name="email" required>
             </div>
             <div class="col-md-6 mb-3">
                 <label for="validationTel">Phone number</label>
-                <input type="tel" class="form-control" id="validationTel" placeholder="+375(12)345-67-89" required>
+                <input type="tel" class="form-control" id="validationTel" placeholder="+375(12)345-67-89" name="phone" required>
             </div>
         </div>
         <div class="form-row">
@@ -57,11 +57,11 @@
             </div>
             <div class="col-md-3 mb-3">
                 <label for="validationHouse">House</label>
-                <input type="text" class="form-control" id="validationHouse" name="House" placeholder="House" required>
+                <input type="text" class="form-control" id="validationHouse" name="house" placeholder="House" required>
             </div>
             <div class="col-md-3 mb-3">
                 <label for="validationRoom">Room</label>
-                <input type="text" class="form-control" id="validationRoom" name="Room" placeholder="Room" required>
+                <input type="text" class="form-control" id="validationRoom" name="room" placeholder="Room" required>
             </div>
         </div>
         <div class="form-group">

@@ -74,7 +74,11 @@ public class User implements UserDetails {
         return roles.contains(Role.ADMIN);
     }
 
-    public boolean isEmployee(){
-        return roles.contains(Role.EMPLOYEE);
+    public boolean isOperator(){
+        return roles.contains(Role.OPERATOR);
+    }
+
+    public boolean isDoctor(){
+        return roles.contains(Role.DOCTOR);
     }
 }

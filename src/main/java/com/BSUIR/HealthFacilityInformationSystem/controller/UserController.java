@@ -44,23 +44,21 @@ public class UserController {
 
     @PostMapping
     public String userSave(
-            @RequestParam String username,
             @RequestParam Map<String, String> form,
             @RequestParam("userId") User user
-    ){
-        user.setUsername(username);
-
-        final Set<String> roles = Arrays.stream(Role.values())
-                .map(Role::name)
-                .collect(Collectors.toSet());
+    ) {
+        user.setUsername(form.get("username"));
+        user.setFirstName(form.get("firstName"));
+        user.setMiddleName(form.get("middleName"));
+        user.setLastName(form.get("lastName"));
+        user.setEmail(form.get("email"));
+        user.setPhone(form.get("phone"));
+        user.setAddress(form.get("address"));
+        user.setHouse(form.get("house"));
+        user.setRoom(form.get("room"));
 
         user.getRoles().clear();
-
-        for (String key : form.keySet()){
-            if(roles.contains(key)){
-                user.getRoles().add(Role.valueOf(key));
-            }
-        }
+        user.getRoles().add(Role.valueOf(form.get("inputRole")));
 
         userRepository.save(user);
         return "redirect:/user";
