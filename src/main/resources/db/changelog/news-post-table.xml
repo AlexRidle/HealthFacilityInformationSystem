@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet id="1.0" author="bely">
+
+        <createTable tableName="news_post">
+
+            <column autoIncrement="true" name="id" type="BIGINT(19)" startWith="1">
+                <constraints nullable="false" unique="true" primaryKey="true" primaryKeyName="PK_news_post_id"/>
+            </column>
+
+            <column name="user_id" type="BIGINT(19)">
+                <constraints nullable="false" primaryKeyName="PK_news_post_user_id" foreignKeyName="fk_news_post_user_id" references="user(id)"/>
+            </column>
+
+            <column name="filename" type="VARCHAR(100)">
+                <constraints nullable="true"/>
+            </column>
+
+            <column name="tag" type="VARCHAR(100)">
+                <constraints nullable="true"/>
+            </column>
+
+            <column name="text" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+
+        </createTable>
+
+    </changeSet>
+
+</databaseChangeLog>

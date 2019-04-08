@@ -42,3 +42,9 @@ body {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
+/* show reverse by horizontal row */
+.row-reverse { display: flex; flex-direction: row-reverse; }
+
+/* show reverse by vertical column */
+.column-reverse { display: flex; flex-direction: column-reverse; }

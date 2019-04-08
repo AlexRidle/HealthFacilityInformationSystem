@@ -12,34 +12,33 @@ import javax.persistence.ManyToOne;
 
 @Data
 @Entity // This tells Hibernate to make a table out of this class
-public class Ticket {
-    public Ticket(final String doctor, final String time, String ward, User patient) {
-        this.doctor = doctor;
-        this.time = time;
-        this.ward = ward;
-        this.patient = patient;
+public class NewsPost {
+    public NewsPost(final String text, final String tag, User author) {
+        this.author = author;
+        this.text = text;
+        this.tag = tag;
     }
 
-    public Ticket() {
+    public NewsPost() {
     }
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer id;
 
-    private String doctor;
+    private String text;
 
-    private String time;
+    private String filename;
 
-    private String ward;
+    private String tag;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
-    private User patient;
+    private User author;
 
-    public String getPatientName(){
-        return patient != null
-                ? patient.getFirstName() + " " + patient.getMiddleName() + " " + patient.getLastName()
+    public String getAuthorName(){
+        return author != null
+                ? author.getFullName()
                 : "<null>";
     }
 }

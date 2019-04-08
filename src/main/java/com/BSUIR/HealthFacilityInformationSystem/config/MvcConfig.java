@@ -9,11 +9,17 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class MvcConfig implements WebMvcConfigurer {
 
-    private String uploadPath = "D:/Work/Java/Projects/BSUIR/Diploma/HealthFacilityInformationSystem/src/main/resources/templates/img";
+    @Value("${image.path}")
+    private String imagePath;
+
+    @Value("${upload.path}")
+    private String uploadPath;
 
     @Override
     public void addResourceHandlers(final ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/img/**")
+                .addResourceLocations("file:///"+ imagePath +"/");
+        registry.addResourceHandler("/uploads/**")
                 .addResourceLocations("file:///"+uploadPath+"/");
         registry.addResourceHandler("/static/**")
                 .addResourceLocations("classpath:/static/");
