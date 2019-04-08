@@ -30,6 +30,9 @@
         <div class="form-group mt-3">
             <form method="post" enctype="multipart/form-data">
                 <div class="form-group">
+                    <input type="text" class="form-control" name="title" placeholder="Title">
+                </div>
+                <div class="form-group">
                     <input type="text" class="form-control" name="text" placeholder="Message">
                 </div>
                 <div class="form-group">
@@ -65,7 +68,7 @@
             <img src="/uploads/${newsPost.filename}" class="card-img-top img-fluid">
             </#if>
                 <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
+                    <h5 class="card-title">${newsPost.title}</h5>
                     <p class="card-text">${newsPost.text}</p>
                     <p class="card-text">
                         <small class="text-muted">${newsPost.tag}</small>

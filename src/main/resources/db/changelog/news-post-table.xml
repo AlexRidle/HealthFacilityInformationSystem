@@ -14,17 +14,23 @@
                 <constraints nullable="false" primaryKeyName="PK_news_post_user_id" foreignKeyName="fk_news_post_user_id" references="user(id)"/>
             </column>
 
-            <column name="filename" type="VARCHAR(100)">
-                <constraints nullable="true"/>
-            </column>
-
-            <column name="tag" type="VARCHAR(100)">
-                <constraints nullable="true"/>
+            <column name="title" type="TEXT">
+                <constraints nullable="false" />
             </column>
 
             <column name="text" type="TEXT">
                 <constraints nullable="false" />
             </column>
+
+            <column name="tag" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="filename" type="VARCHAR(100)">
+                <constraints nullable="true"/>
+            </column>
+
+
 
         </createTable>
 

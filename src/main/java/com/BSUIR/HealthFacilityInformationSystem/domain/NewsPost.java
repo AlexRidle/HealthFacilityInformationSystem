@@ -13,8 +13,9 @@ import javax.persistence.ManyToOne;
 @Data
 @Entity // This tells Hibernate to make a table out of this class
 public class NewsPost {
-    public NewsPost(final String text, final String tag, User author) {
+    public NewsPost(final String title, final String text, final String tag, final User author) {
         this.author = author;
+        this.title = title;
         this.text = text;
         this.tag = tag;
     }
@@ -26,11 +27,13 @@ public class NewsPost {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer id;
 
+    private String title;
+
     private String text;
 
-    private String filename;
-
     private String tag;
+
+    private String filename;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")

@@ -51,12 +51,13 @@ public class MainController {
     @PostMapping("/news")
     public String add(
             @AuthenticationPrincipal User user,
+            @RequestParam String title,
             @RequestParam String text,
             @RequestParam String tag,
             @RequestParam("file") MultipartFile file,
             Map<String, Object> model
             ) throws IOException {
-        final NewsPost newsPost = new NewsPost(text, tag, user);
+        final NewsPost newsPost = new NewsPost(title, text, tag, user);
 
         if (file != null && !file.getOriginalFilename().isEmpty()) {
             final File uploadDir = new File(uploadPath);
