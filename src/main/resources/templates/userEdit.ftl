@@ -38,7 +38,7 @@
                        placeholder="Middle name" required>
             </div>
             <div class="col-md-4 mb-3">
-                <label for="validationLastName">Middle name</label>
+                <label for="validationLastName">Last name</label>
                 <input type="text" class="form-control" id="validationLastName" name="lastName" placeholder="Last name"
                        value="${user.lastName}"
                        required>
