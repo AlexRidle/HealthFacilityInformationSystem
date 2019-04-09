@@ -13,6 +13,9 @@
                 <a class="nav-link" href="/news">News</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="/ticket">Get ticket</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="/account">Account</a>
             </li>
             <#if isAdmin>

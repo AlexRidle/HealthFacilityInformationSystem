@@ -1,5 +1,5 @@
 <#import "parts/common.ftl" as c>
-<#include "parts/security.ftl">
+<#--<#include "parts/security.ftl">-->
 
 <@c.page>
     <link rel="stylesheet" href="/static/style.css">
@@ -104,10 +104,10 @@
         <#--<#list users as user>-->
         <tr>
             <td width="1%">1</td>
-            <td width="1%">Стоматология</td>
-            <td width="1%">Петров Петрович Петр</td>
+            <td width="1%">STOMATOLOGY</td>
+            <td width="1%">Rootov Root Root</td>
             <td width="1%"> 12.12.2012 12:12</td>
-            <td>Итак кто собирается либо хочет с нами на выпускной отпишите + в лсИтак кто собирается либо хочет с нами на выпускной отпишите + в лс</td>
+            <td>One two three fourfive sixseven One twOne two three fourfive sixseven One two three fOne two three fourfive sixseven ourfive siOne two three fourfive sixseven xseOne two three fourfive sixseven ven o three fourfive sixseven One two three fourfive sixseven </td>
         <#--</#list>-->
                 </tr>
                 </tbody>

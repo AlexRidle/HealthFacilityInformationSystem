@@ -21,7 +21,6 @@
                     <option value="${role}" ${user.roles?seq_contains(role)?string("selected", "")}>${role}</option>
                     </#list>
                 </select>
-
             </div>
         </div>
         <div class="form-row">
