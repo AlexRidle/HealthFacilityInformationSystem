@@ -10,9 +10,9 @@
     </#if>
     <h5 class="mt-3 mb-3 text-center featurette-heading"><b>Personal cabinet</b></h5>
 <div class="container" >
-    <a class="btn btn-secondary btn-lg btn-block" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false"
+    <a class="btn btn-secondary btn-lg btn-block mb-3" data-toggle="collapse" href="#editForm" role="button" aria-expanded="false"
        aria-controls="collapseExample">Edit personal account</a>
-    <div class="collapse" id="collapseExample">
+    <div class="collapse" id="editForm">
         <div class="form-group mt-3">
             <form method="post" enctype="multipart/form-data" action="/account">
                 <input type="hidden" value="${_csrf.token}" name="_csrf">
@@ -84,6 +84,34 @@
                     <button type="submit" class="btn btn-primary">Save</button>
                 </div>
             </form>
+        </div>
+    </div>
+    <a class="btn btn-secondary btn-lg btn-block mb-3" data-toggle="collapse" href="#ticketHistory" role="button" aria-expanded="false"
+       aria-controls="collapseExample">Open ticket history</a>
+    <div class="collapse" id="ticketHistory">
+        <div class="form-group">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Department</th>
+                    <th scope="col">Doctor</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Result</th>
+                </tr>
+                </thead>
+                <tbody>
+        <#--<#list users as user>-->
+        <tr>
+            <td width="1%">1</td>
+            <td width="1%">Стоматология</td>
+            <td width="1%">Петров Петрович Петр</td>
+            <td width="1%"> 12.12.2012 12:12</td>
+            <td>Итак кто собирается либо хочет с нами на выпускной отпишите + в лсИтак кто собирается либо хочет с нами на выпускной отпишите + в лс</td>
+        <#--</#list>-->
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet id="1.0" author="bely">
+
+        <createTable tableName="ticket">
+
+            <column autoIncrement="true" name="id" type="BIGINT(19)" startWith="1">
+                <constraints nullable="false" unique="true" primaryKey="true" primaryKeyName="PK_ticket_id"/>
+            </column>
+
+            <column name="user_id" type="BIGINT(19)">
+                <constraints nullable="true" primaryKeyName="PK_ticket_user_id" foreignKeyName="fk_ticket_user_id" references="user(id)"/>
+            </column>
+
+            <column name="doctor_id" type="BIGINT(19)">
+                <constraints nullable="false" primaryKeyName="PK_ticket_doctor_id" foreignKeyName="fk_ticket_doctor_id" references="doctor(id)"/>
+            </column>
+
+            <column name="schedule_id" type="BIGINT(19)">
+                <constraints nullable="false" primaryKeyName="PK_ticket_schedule_id" foreignKeyName="fk_ticket_schedule_id" references="schedule(id)"/>
+            </column>
+
+            <column name="department" type="VARCHAR(30)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="phone" type="VARCHAR(100)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+
+            <column name="first_name" type="VARCHAR(100)">
+                <constraints nullable="false" unique="false"/>
+            </column>
+
+            <column name="middle_name" type="VARCHAR(100)">
+                <constraints nullable="false" unique="false"/>
+            </column>
+
+            <column name="last_name" type="VARCHAR(100)">
+                <constraints nullable="false" unique="false"/>
+            </column>
+
+            <column name="address" type="VARCHAR(100)">
+                <constraints nullable="false" unique="false"/>
+            </column>
+
+            <column name="house" type="VARCHAR(100)">
+                <constraints nullable="false" unique="false"/>
+            </column>
+
+            <column name="room" type="VARCHAR(100)">
+                <constraints nullable="false" unique="false"/>
+            </column>
+
+            <column name="result" type="TEXT">
+                <constraints nullable="true" />
+            </column>
+
+        </createTable>
+
+    </changeSet>
+
+</databaseChangeLog>

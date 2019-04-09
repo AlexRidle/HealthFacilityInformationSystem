@@ -9,6 +9,9 @@
     <include file="changelog/user-table.xml" relativeToChangelogFile="true"/>
     <include file="changelog/user-role-table.xml" relativeToChangelogFile="true"/>
     <include file="changelog/news-post-table.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/doctor-table.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/schedule-table.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/ticket-table.xml" relativeToChangelogFile="true"/>
     <include file="changelog/insert-default-settings.xml" relativeToChangelogFile="true"/>
 
 
