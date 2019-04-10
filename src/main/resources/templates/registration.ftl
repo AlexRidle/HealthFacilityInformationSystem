@@ -3,9 +3,9 @@
 <@c.page>
 
 <link rel="stylesheet" href="/static/style.css">
-<#if message! == "User exists!">
+<#if message! == "error">
 <div class="alert alert-danger" role="alert">
-    This username is already registered!
+    This username or email is already registered!
 </div>
 </#if>
 <h5 class="mt-3 mb-3 text-center featurette-heading">Registration</h5>

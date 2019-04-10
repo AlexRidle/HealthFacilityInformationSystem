@@ -57,7 +57,8 @@ public class TicketController {
                     user.getAddress(),
                     user.getHouse(),
                     user.getRoom(),
-                    scheduleRepository.findById(1l).get());
+                    scheduleRepository.findById(1l).get(),
+                    null);
         } else {
             ticket = new Ticket(null,
                     doctorRepository.findById(1l).get(),
@@ -69,7 +70,8 @@ public class TicketController {
                     form.get("address"),
                     form.get("house"),
                     form.get("room"),
-                    scheduleRepository.findById(1l).get());
+                    scheduleRepository.findById(1l).get(),
+                    null);
         }
         ticketRepository.save(ticket);
         model.addAttribute("response", "success");

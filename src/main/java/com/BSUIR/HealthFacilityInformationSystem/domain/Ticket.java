@@ -20,7 +20,7 @@ public class Ticket {
                   final String firstName, final String middleName,
                   final String lastName, final String address,
                   final String house, final String room,
-                  final Schedule schedule
+                  final Schedule schedule, final String result
     ){
         this.user = user;
         this.doctor = doctor;
@@ -33,13 +33,14 @@ public class Ticket {
         this.house = house;
         this.room = room;
         this.schedule = schedule;
+        this.result = result;
     }
 
     public Ticket() {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -64,4 +65,5 @@ public class Ticket {
     private String address;
     private String house;
     private String room;
+    private String result;
 }

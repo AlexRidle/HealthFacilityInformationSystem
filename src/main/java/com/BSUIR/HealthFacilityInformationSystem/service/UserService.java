@@ -26,9 +26,8 @@ public class UserService implements UserDetailsService {
     }
 
     public boolean addUser(User user) {
-        final User username = userRepository.findByUsername(user.getUsername());
-
-        if (username != null) {
+        if (userRepository.findByUsername(user.getUsername()) != null ||
+                userRepository.findByEmail(user.getEmail()) != null) {
             return false;
         }
 

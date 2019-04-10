@@ -101,14 +101,14 @@
                 </tr>
                 </thead>
                 <tbody>
-        <#--<#list users as user>-->
+        <#list tickets as ticket>
         <tr>
-            <td width="1%">1</td>
-            <td width="1%">STOMATOLOGY</td>
-            <td width="1%">Rootov Root Root</td>
-            <td width="1%"> 12.12.2012 12:12</td>
-            <td>One two three fourfive sixseven One twOne two three fourfive sixseven One two three fOne two three fourfive sixseven ourfive siOne two three fourfive sixseven xseOne two three fourfive sixseven ven o three fourfive sixseven One two three fourfive sixseven </td>
-        <#--</#list>-->
+            <td width="1%">${ticket?counter}</td>
+            <td width="1%">${ticket.getDepartment()}</td>
+            <td width="1%">${ticket.getDoctor().getUser().getFullName()}</td>
+            <td width="1%">${ticket.getSchedule().getDateAndTime()}</td>
+            <td>${ticket.getResult()!}</td>
+        </#list>
                 </tr>
                 </tbody>
             </table>

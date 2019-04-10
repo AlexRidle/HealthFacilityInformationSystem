@@ -1,7 +1,8 @@
 package com.BSUIR.HealthFacilityInformationSystem.controller;
 
-import com.BSUIR.HealthFacilityInformationSystem.domain.Role;
+import com.BSUIR.HealthFacilityInformationSystem.domain.Ticket;
 import com.BSUIR.HealthFacilityInformationSystem.domain.User;
+import com.BSUIR.HealthFacilityInformationSystem.repository.TicketRepository;
 import com.BSUIR.HealthFacilityInformationSystem.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -11,11 +12,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -23,15 +24,19 @@ import java.util.Map;
 @PreAuthorize("isAuthenticated()")
 public class AccountController {
     private final UserRepository userRepository;
+    private final TicketRepository ticketRepository;
 
     @Autowired
-    public AccountController(final UserRepository userRepository) {
+    public AccountController(final UserRepository userRepository, final TicketRepository ticketRepository) {
         this.userRepository = userRepository;
+        this.ticketRepository = ticketRepository;
     }
 
     @GetMapping
     public String userForm(@AuthenticationPrincipal User user, Model model) {
+        List<Ticket> tickets = ticketRepository.findByUser_Id(user.getId());
         model.addAttribute("user", user);
+        model.addAttribute("tickets", tickets);
         return "account";
     }
 
