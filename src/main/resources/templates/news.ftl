@@ -61,9 +61,9 @@
         </div>
     </div>
     </#if>
-    <div class="card-mb-3 card-deck">
+    <div class="card-mb-3 card-deck centered">
         <#list newsPosts as newsPost>
-            <div class="card mb-3 ">
+            <div class="card mb-3 max-card-width">
             <#if newsPost.filename??>
             <img src="/uploads/${newsPost.filename}" class="card-img-top img-fluid">
             </#if>
