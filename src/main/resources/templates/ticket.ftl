@@ -38,6 +38,8 @@
                 <script>
                     $(function () {
                         $('.datepicker').datepicker({
+                            format: "yyyy-mm-dd",
+                            weekStart: 1,
                             todayBtn: true,
                             daysOfWeekDisabled: "5,6",
                             daysOfWeekHighlighted: "5,6",

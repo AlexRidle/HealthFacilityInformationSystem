@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
@@ -52,6 +53,7 @@ public class AccountController {
         userDetails.setFirstName(form.get("firstName"));
         userDetails.setMiddleName(form.get("middleName"));
         userDetails.setLastName(form.get("lastName"));
+        userDetails.setBirthDate(LocalDate.parse(form.get("birthDate")));
         userDetails.setEmail(form.get("email"));
         userDetails.setPhone(form.get("phone"));
         userDetails.setAddress(form.get("address"));

@@ -49,10 +49,24 @@
                 <input type="email" class="form-control" id="validationEmail" name="email" placeholder="email" value="${user.email}"
                        required>
             </div>
-            <div class="col-md-6 mb-3">
+            <div class="col-md-3 mb-3">
                 <label for="validationTel">Phone number</label>
                 <input type="tel" class="form-control" id="validationTel" name="phone" placeholder="+375(12)345-67-89"
                        value="${user.phone}" required>
+            </div>
+            <script>
+                $(function () {
+                    $('.datepicker').datepicker({
+                        format: "yyyy-mm-dd",
+                        weekStart: 1,
+                        todayBtn: true,
+                        todayHighlight: true
+                    });
+                });
+            </script>
+            <div class="col-md-3 mb-3">
+                <label for="validationBirth">Birthday</label>
+                <input type="text" class="form-control datepicker" id="validationBirth" name="birthDate" placeholder="yyyy-mm-dd" value="${user.birthDate}" required>
             </div>
         </div>
         <div class="form-row">

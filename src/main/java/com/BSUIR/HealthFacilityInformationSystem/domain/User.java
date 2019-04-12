@@ -1,6 +1,7 @@
 package com.BSUIR.HealthFacilityInformationSystem.domain;
 
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -14,6 +15,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Set;
 
@@ -31,6 +33,8 @@ public class User implements UserDetails {
     private String firstName;
     private String middleName;
     private String lastName;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate birthDate;
 
     private String address;
     private String house;

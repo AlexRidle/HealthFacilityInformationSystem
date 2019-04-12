@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import java.time.LocalDate;
 
 @Data
 @Entity
@@ -18,7 +19,7 @@ public class Ticket {
     public Ticket(final User user, final Doctor doctor,
                   final Department department, final String phone,
                   final String firstName, final String middleName,
-                  final String lastName, final String address,
+                  final String lastName, final LocalDate birthDate, final String address,
                   final String house, final String room,
                   final Schedule schedule, final String result
     ){
@@ -29,6 +30,7 @@ public class Ticket {
         this.firstName = firstName;
         this.middleName = middleName;
         this.lastName = lastName;
+        this.birthDate = birthDate;
         this.address = address;
         this.house = house;
         this.room = room;
@@ -62,6 +64,7 @@ public class Ticket {
     private String firstName;
     private String middleName;
     private String lastName;
+    private LocalDate birthDate;
     private String address;
     private String house;
     private String room;

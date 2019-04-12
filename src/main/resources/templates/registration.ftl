@@ -54,14 +54,16 @@
             <script>
                 $(function () {
                     $('.datepicker').datepicker({
+                        format: "yyyy-mm-dd",
+                        weekStart: 1,
                         todayBtn: true,
                         todayHighlight: true
                     });
                 });
             </script>
-            <div class="col-md-4 mb-3">
-                <label for="validationBirth">Date of birth</label>
-                <input type="text" class="form-control datepicker" id="validationBirth" name="dateOfBirth" placeholder="Date of birth">
+            <div class="col-md-3 mb-3">
+                <label for="validationBirth">Birthday</label>
+                <input type="text" class="form-control datepicker" id="validationBirth" name="birthDate" placeholder="yyyy-mm-dd" required>
             </div>
             <div class="col-md-6 mb-3">
                 <label for="validationAddress">Address</label>

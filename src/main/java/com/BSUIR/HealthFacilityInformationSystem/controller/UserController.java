@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.LocalDate;
 import java.util.Map;
 
 @Controller
@@ -48,6 +49,7 @@ public class UserController {
         user.setFirstName(form.get("firstName"));
         user.setMiddleName(form.get("middleName"));
         user.setLastName(form.get("lastName"));
+        user.setBirthDate(LocalDate.parse(form.get("birthDate")));
         user.setEmail(form.get("email"));
         user.setPhone(form.get("phone"));
         user.setAddress(form.get("address"));

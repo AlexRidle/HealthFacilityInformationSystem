@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.LocalDate;
 import java.util.Map;
 
 @Controller
@@ -54,6 +55,7 @@ public class TicketController {
                     user.getFirstName(),
                     user.getMiddleName(),
                     user.getLastName(),
+                    user.getBirthDate(),
                     user.getAddress(),
                     user.getHouse(),
                     user.getRoom(),
@@ -67,6 +69,7 @@ public class TicketController {
                     form.get("firstName"),
                     form.get("middleName"),
                     form.get("lastName"),
+                    LocalDate.parse(form.get("birthDate")),
                     form.get("address"),
                     form.get("house"),
                     form.get("room"),
