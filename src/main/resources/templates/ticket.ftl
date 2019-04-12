@@ -8,6 +8,11 @@
         Successfully registered a ticket! Check personal cabinet to get all requested tickets!
     </div>
     </#if>
+    <#if response! == "error">
+    <div class="alert alert-danger" role="alert">
+        An error occurred. Please, try to request a ticket again.
+    </div>
+    </#if>
 <h5 class="mt-3 mb-3 text-center featurette-heading"><b>Request a ticket</b></h5>
 
 <div class="container">
@@ -40,16 +45,17 @@
                         $('.datepicker').datepicker({
                             format: "yyyy-mm-dd",
                             weekStart: 1,
+                            // multidate: true,
                             todayBtn: true,
-                            daysOfWeekDisabled: "5,6",
-                            daysOfWeekHighlighted: "5,6",
+                            daysOfWeekDisabled: "6,0",
+                            daysOfWeekHighlighted: "6,0",
                             todayHighlight: true
                         });
                     });
                 </script>
                 <div class="col-md-2 mb-3">
                     <label for="validationBirth">Date of birth</label>
-                    <input type="text" class="form-control datepicker" id="validationBirth" name="dateOfBirth" placeholder="Date of birth" required>
+                    <input type="text" class="form-control datepicker" id="validationBirth" name="birthDate" placeholder="yyyy-mm-dd" required>
                 </div>
                 <div class="col-md-3 mb-3">
                     <label for="validationTel">Phone number</label>

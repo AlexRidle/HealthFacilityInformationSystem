@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.Map;
 
 @Controller
@@ -46,38 +47,43 @@ public class TicketController {
             Model model) {
 
         //if date is not registered
-        Ticket ticket;
-        if (user != null) {
-            ticket = new Ticket(user,
-                    doctorRepository.findById(1l).get(),
-                    Department.valueOf(form.get("department")),
-                    user.getPhone(),
-                    user.getFirstName(),
-                    user.getMiddleName(),
-                    user.getLastName(),
-                    user.getBirthDate(),
-                    user.getAddress(),
-                    user.getHouse(),
-                    user.getRoom(),
-                    scheduleRepository.findById(1l).get(),
-                    null);
-        } else {
-            ticket = new Ticket(null,
-                    doctorRepository.findById(1l).get(),
-                    Department.valueOf(form.get("department")),
-                    form.get("phone"),
-                    form.get("firstName"),
-                    form.get("middleName"),
-                    form.get("lastName"),
-                    LocalDate.parse(form.get("birthDate")),
-                    form.get("address"),
-                    form.get("house"),
-                    form.get("room"),
-                    scheduleRepository.findById(1l).get(),
-                    null);
+        try {
+            Ticket ticket;
+            if (user != null) {
+                ticket = new Ticket(user,
+                        doctorRepository.findById(1l).get(),
+                        Department.valueOf(form.get("department")),
+                        user.getPhone(),
+                        user.getFirstName(),
+                        user.getMiddleName(),
+                        user.getLastName(),
+                        user.getBirthDate(),
+                        user.getAddress(),
+                        user.getHouse(),
+                        user.getRoom(),
+                        scheduleRepository.findById(1l).get(),
+                        null);
+            } else {
+                ticket = new Ticket(null,
+                        doctorRepository.findById(1l).get(),
+                        Department.valueOf(form.get("department")),
+                        form.get("phone"),
+                        form.get("firstName"),
+                        form.get("middleName"),
+                        form.get("lastName"),
+                        LocalDate.parse(form.get("birthDate")),
+                        form.get("address"),
+                        form.get("house"),
+                        form.get("room"),
+                        scheduleRepository.findById(1l).get(),
+                        null);
+            }
+            ticketRepository.save(ticket);
+            model.addAttribute("response", "success");
+        } catch (DateTimeParseException e) {
+            model.addAttribute("response", "error");
+            e.printStackTrace();
         }
-        ticketRepository.save(ticket);
-        model.addAttribute("response", "success");
         model.addAttribute("departments", Department.values());
         //if not registered show error
     }
