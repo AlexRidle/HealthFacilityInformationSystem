@@ -18,9 +18,21 @@
             <li class="nav-item">
                 <a class="nav-link" href="/account">Account</a>
             </li>
-            <#if isAdmin>
-            <li class="nav-item">
-                <a class="nav-link" href="/user">Registered users</a>
+            <#if isEmployee>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="employeesDropdown" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">For Employees</a>
+                <div class="dropdown-menu" aria-labelledby="employeesDropdown">
+                    <#if isDoctor>
+                <a class="dropdown-item" href="/patient">Patient Admission</a>
+                    </#if>
+                <#if isOperator>
+                <a class="dropdown-item" href="/schedule">Schedule</a>
+                </#if>
+                <#if isAdmin>
+                <a class="dropdown-item" href="/user">Registered users</a>
+                </#if>
+                </div>
             </li>
             </#if>
         </ul>

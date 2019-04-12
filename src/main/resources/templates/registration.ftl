@@ -2,7 +2,7 @@
 
 <@c.page>
 
-<link rel="stylesheet" href="/static/style.css">
+<link rel="stylesheet" href="/static/css/style.css">
 <#if message! == "error">
 <div class="alert alert-danger" role="alert">
     This username or email is already registered!
@@ -51,15 +51,27 @@
             </div>
         </div>
         <div class="form-row">
+            <script>
+                $(function () {
+                    $('.datepicker').datepicker({
+                        todayBtn: true,
+                        todayHighlight: true
+                    });
+                });
+            </script>
+            <div class="col-md-4 mb-3">
+                <label for="validationBirth">Date of birth</label>
+                <input type="text" class="form-control datepicker" id="validationBirth" name="dateOfBirth" placeholder="Date of birth">
+            </div>
             <div class="col-md-6 mb-3">
                 <label for="validationAddress">Address</label>
                 <input type="text" class="form-control" id="validationAddress" name="address"  placeholder="Address" required>
             </div>
-            <div class="col-md-3 mb-3">
+            <div class="col-md-1 mb-3">
                 <label for="validationHouse">House</label>
                 <input type="text" class="form-control" id="validationHouse" name="house" placeholder="House" required>
             </div>
-            <div class="col-md-3 mb-3">
+            <div class="col-md-1 mb-3">
                 <label for="validationRoom">Room</label>
                 <input type="text" class="form-control" id="validationRoom" name="room" placeholder="Room" required>
             </div>

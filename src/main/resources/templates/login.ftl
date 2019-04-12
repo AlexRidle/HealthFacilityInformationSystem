@@ -1,7 +1,7 @@
 <#import "parts/common.ftl" as c>
     <@c.page>
     ${message!}
-<link rel="stylesheet" href="/static/signin.css">
+<link rel="stylesheet" href="/static/css/signin.css">
 <form class="form-signin text-center" action="/login" method="post">
     <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
     <label for="username" class="sr-only">Username</label>

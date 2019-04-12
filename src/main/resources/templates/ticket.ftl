@@ -2,7 +2,7 @@
 <#include "parts/security.ftl">
 
 <@c.page>
-<link rel="stylesheet" href="/static/style.css">
+<link rel="stylesheet" href="/static/css/style.css">
     <#if response! == "success">
     <div class="alert alert-success" role="alert">
         Successfully registered a ticket! Check personal cabinet to get all requested tickets!
@@ -35,27 +35,39 @@
                 </div>
             </div>
             <div class="form-row">
-                <div class="col-md-6 mb-3">
+                <script>
+                    $(function () {
+                        $('.datepicker').datepicker({
+                            todayBtn: true,
+                            daysOfWeekDisabled: "5,6",
+                            daysOfWeekHighlighted: "5,6",
+                            todayHighlight: true
+                        });
+                    });
+                </script>
+                <div class="col-md-2 mb-3">
+                    <label for="validationBirth">Date of birth</label>
+                    <input type="text" class="form-control datepicker" id="validationBirth" name="dateOfBirth" placeholder="Date of birth" required>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label for="validationTel">Phone number</label>
+                    <input type="tel" class="form-control" id="validationTel" name="phone"
+                           placeholder="+375(12)345-67-89" required>
+                </div>
+                <div class="col-md-5 mb-3">
                     <label for="validationAddress">Address</label>
                     <input type="text" class="form-control" id="validationAddress" name="address"
                            placeholder="Address" required>
                 </div>
-                <div class="col-md-3 mb-3">
+                <div class="col-md-1 mb-3">
                     <label for="validationHouse">House</label>
                     <input type="text" class="form-control" id="validationHouse" name="house" placeholder="House"
                            required>
                 </div>
-                <div class="col-md-3 mb-3">
+                <div class="col-md-1 mb-3">
                     <label for="validationRoom">Room</label>
                     <input type="text" class="form-control" id="validationRoom" name="room" placeholder="Room"
                            required>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="col-md-6 mb-3">
-                    <label for="validationTel">Phone number</label>
-                    <input type="tel" class="form-control" id="validationTel" name="phone"
-                           placeholder="+375(12)345-67-89" required>
                 </div>
             </div>
             <@mainTicket />

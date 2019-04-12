@@ -2,7 +2,7 @@
 <#--<#include "parts/security.ftl">-->
 
 <@c.page>
-    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/css/style.css">
     <#if response! == "success">
     <div class="alert alert-success" role="alert">
     Successfully edited account
@@ -60,7 +60,19 @@
                     <div class="col-md-6 mb-3">
                         <label for="validationTel">Phone number</label>
                         <input type="tel" class="form-control" id="validationTel" name="phone" placeholder="+375(12)345-67-89"
-                               value="${user.phone}" required>
+                               value="${user.phone!}" required>
+                    </div>
+                    <script>
+                        $(function () {
+                            $('.datepicker').datepicker({
+                                todayBtn: true,
+                                todayHighlight: true
+                            });
+                        });
+                    </script>
+                    <div class="col-md-6 mb-3">
+                        <label for="validationBirth">Date of birth</label>
+                        <input type="text" class="form-control datepicker" id="validationBirth" name="dateOfBirth">
                     </div>
                 </div>
                 <div class="form-row">

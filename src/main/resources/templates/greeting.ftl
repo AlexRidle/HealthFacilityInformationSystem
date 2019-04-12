@@ -1,7 +1,7 @@
 <#import "parts/common.ftl" as c>
 
 <@c.page>
-    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/css/style.css">
     <div id="myContainer" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
             <li data-target="#myContainer" data-slide-to="0" class="active"></li>

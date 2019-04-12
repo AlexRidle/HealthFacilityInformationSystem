@@ -42,6 +42,7 @@ public class AccountController {
 
     @PostMapping
     public void userSave(
+            @AuthenticationPrincipal User user,
             @RequestParam Map<String, String> form,
             Model model
     ) {
@@ -58,6 +59,10 @@ public class AccountController {
         userDetails.setRoom(form.get("room"));
 
         userRepository.save(userDetails);
+
+        List<Ticket> tickets = ticketRepository.findByUser_Id(user.getId());
+        model.addAttribute("user", user);
+        model.addAttribute("tickets", tickets);
         model.addAttribute("response", "success");
     }
 

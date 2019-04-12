@@ -1,7 +1,7 @@
 <#import "parts/common.ftl" as c>
 
 <@c.page>
-<link rel="stylesheet" href="/static/style.css">
+<link rel="stylesheet" href="/static/css/style.css">
 <h5 class="mt-3 mb-3 text-center featurette-heading">Edit: <b>${user.username}</b></h5>
 <div class="container mt-3 mb-3">
     <form action="/user" method="post">
