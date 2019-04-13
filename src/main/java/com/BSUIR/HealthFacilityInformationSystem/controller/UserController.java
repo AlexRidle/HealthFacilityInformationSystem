@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDate;
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -29,7 +31,9 @@ public class UserController {
 
     @GetMapping
     public String userList(Model model) {
-        model.addAttribute("users", userRepository.findAll());
+        List<User> users =  userRepository.findAll();
+        Collections.reverse(users);
+        model.addAttribute("users", users);
         return "userList";
     }
 

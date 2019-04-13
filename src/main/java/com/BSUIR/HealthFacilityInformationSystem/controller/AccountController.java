@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -36,6 +37,7 @@ public class AccountController {
     @GetMapping
     public String userForm(@AuthenticationPrincipal User user, Model model) {
         List<Ticket> tickets = ticketRepository.findByUser_Id(user.getId());
+        Collections.reverse(tickets);
         model.addAttribute("user", user);
         model.addAttribute("tickets", tickets);
         return "account";
@@ -63,6 +65,7 @@ public class AccountController {
         userRepository.save(userDetails);
 
         List<Ticket> tickets = ticketRepository.findByUser_Id(user.getId());
+        Collections.reverse(tickets);
         model.addAttribute("user", user);
         model.addAttribute("tickets", tickets);
         model.addAttribute("response", "success");

@@ -15,6 +15,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -37,12 +40,13 @@ public class MainController {
 
     @GetMapping("/news")
     public String main(@RequestParam(required = false, defaultValue = "") String filter, Model model) {
-        final Iterable<NewsPost> newsPosts;
+        final List<NewsPost> newsPosts;
         if (filter == null || filter.isEmpty()) {
             newsPosts = newsPostRepository.findAll();
         } else {
             newsPosts = newsPostRepository.findByTag(filter);
         }
+        Collections.reverse(newsPosts);
         model.addAttribute("newsPosts", newsPosts);
         model.addAttribute("filter", filter);
         return "news";
@@ -70,7 +74,8 @@ public class MainController {
             newsPost.setFilename(resultFilename);
         }
         newsPostRepository.save(newsPost);
-        final Iterable<NewsPost> newsPosts = newsPostRepository.findAll();
+        final List<NewsPost> newsPosts = newsPostRepository.findAll();
+        Collections.reverse(newsPosts);
         model.put("newsPosts", newsPosts);
         return "news";
     }
