@@ -120,7 +120,7 @@
             <td width="1%">${ticket?counter}</td>
             <td width="1%">${ticket.getDepartment()}</td>
             <td width="1%">${ticket.getDoctor().getUser().getFullName()}</td>
-            <td width="1%">${ticket.getSchedule().getDateAndTime()}</td>
+            <td width="1%">${ticket.getSchedule().getLocalDateTime()}</td>
             <td>${ticket.getResult()!}</td>
         </#list>
                 </tr>

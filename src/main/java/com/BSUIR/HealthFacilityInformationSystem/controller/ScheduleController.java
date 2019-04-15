@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -75,10 +76,23 @@ public class ScheduleController {
     }
 
     @GetMapping("{doctor}")
-    public String scheduleEdit(@PathVariable Doctor doctor, Model model) {
-
-
-        return "scheduleEdit";
+    public String doctorScheduleList(@PathVariable Doctor doctor, Model model) {
+        List<Schedule> schedules = scheduleRepository.findByDoctor_Id(doctor.getId());
+        List<Ticket> tickets = ticketRepository.findByDoctor_IdAndResultIsNull(doctor.getId());
+        List<Ticket> expiredTickets = ticketRepository.findByDoctor_IdAndResultIsNotNull(doctor.getId());
+        Collections.reverse(tickets);
+        model.addAttribute("tickets", tickets);
+        model.addAttribute("expiredTickets", expiredTickets);
+        model.addAttribute("schedules",schedules);
+        model.addAttribute("doctor", doctor);
+        return "doctorScheduleList";
     }
+
+//    @GetMapping("{schedule}")
+//    public String scheduleEdit(@PathVariable Schedule schedule, Model model) {
+//
+//
+//        return "scheduleEdit";
+//    }
 
 }
