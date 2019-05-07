@@ -8,6 +8,7 @@ known = Session.SPRING_SECURITY_CONTEXT??
     name = user.getUsername()
     isEmployee = user.isEmployee()
     isDoctor = user.isDoctor()
+    isOnlyDoctor = user.isOnlyDoctor()
     isOperator = user.isOperator()
     isAdmin = user.isAdmin()
     >
@@ -16,6 +17,7 @@ known = Session.SPRING_SECURITY_CONTEXT??
     name = "Guest"
     isEmployee = false
     isDoctor = false
+    isOnlyDoctor = false
     isOperator = false
     isAdmin = false
     >

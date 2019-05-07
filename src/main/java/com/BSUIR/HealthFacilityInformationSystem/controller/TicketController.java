@@ -1,6 +1,7 @@
 package com.BSUIR.HealthFacilityInformationSystem.controller;
 
 import com.BSUIR.HealthFacilityInformationSystem.domain.Department;
+import com.BSUIR.HealthFacilityInformationSystem.domain.Role;
 import com.BSUIR.HealthFacilityInformationSystem.domain.Ticket;
 import com.BSUIR.HealthFacilityInformationSystem.domain.User;
 import com.BSUIR.HealthFacilityInformationSystem.repository.DoctorRepository;
@@ -11,6 +12,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -38,6 +40,23 @@ public class TicketController {
         model.addAttribute("user", user);
         model.addAttribute("departments", Department.values());
         return "ticket";
+    }
+
+    @GetMapping("/edit/{ticket}")
+    public String editTicket(
+            @AuthenticationPrincipal User user,
+            @PathVariable Ticket ticket,
+            @RequestParam Map<String, String> form,
+            Model model) {
+
+        if(user.getRoles().contains(Role.USER)){
+            return "news";
+        }
+
+        model.addAttribute("departments", Department.values());
+        model.addAttribute("ticket", ticket);
+
+        return "editTicket";
     }
 
     @PostMapping
@@ -87,4 +106,25 @@ public class TicketController {
         model.addAttribute("departments", Department.values());
         //if not registered show error
     }
+
+    @PostMapping("/edit/{ticket}")
+    public String saveEditedTicket(
+            @PathVariable Ticket ticket,
+            @RequestParam Map<String, String> form,
+            Model model) {
+
+        ticket.setResult(form.get("result"));
+        try {
+            ticketRepository.save(ticket);
+            model.addAttribute("response", "success");
+        } catch (DateTimeParseException e) {
+            model.addAttribute("response", "error");
+            e.printStackTrace();
+        }
+        model.addAttribute("departments", Department.values());
+        model.addAttribute("ticket", ticket);
+
+        return "editTicket";
+    }
+
 }

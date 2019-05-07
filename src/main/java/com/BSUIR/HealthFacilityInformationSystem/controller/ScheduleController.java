@@ -1,5 +1,6 @@
 package com.BSUIR.HealthFacilityInformationSystem.controller;
 
+import com.BSUIR.HealthFacilityInformationSystem.domain.Department;
 import com.BSUIR.HealthFacilityInformationSystem.domain.Doctor;
 import com.BSUIR.HealthFacilityInformationSystem.domain.Schedule;
 import com.BSUIR.HealthFacilityInformationSystem.domain.Ticket;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -44,9 +46,17 @@ public class ScheduleController {
     @GetMapping
     public String schedule(@AuthenticationPrincipal User user, Model model) {
         model.addAttribute("user", user);
-        List<Doctor> doctors = doctorRepository.findAll();
+        List<Doctor> doctors = doctorRepository.findAllByActive(true);
+        List<Ticket> expiredTickets = ticketRepository.findByResultIsNotNull();
         List<Schedule> unregSchedules = scheduleRepository.findByRegistered(false);
         List<Schedule> regSchedules = scheduleRepository.findByRegistered(true);
+        List<Ticket> tickets = ticketRepository.findByResultIsNull();
+        Collections.reverse(expiredTickets);
+        Collections.reverse(unregSchedules);
+        Collections.reverse(regSchedules);
+        Collections.reverse(tickets);
+        model.addAttribute("tickets", tickets);
+        model.addAttribute("expiredTickets", expiredTickets);
         model.addAttribute("unregSchedules", unregSchedules);
         model.addAttribute("regSchedules", regSchedules);
         model.addAttribute("doctors", doctors);
@@ -70,16 +80,30 @@ public class ScheduleController {
                 scheduleRepository.save(schedule);
             }
         }
-        List<Doctor> doctors = doctorRepository.findAll();
-        model.addAttribute("response", response);
+        List<Doctor> doctors = doctorRepository.findAllByActive(true);
+        List<Ticket> expiredTickets = ticketRepository.findByResultIsNotNull();
+        List<Schedule> unregSchedules = scheduleRepository.findByRegistered(false);
+        List<Schedule> regSchedules = scheduleRepository.findByRegistered(true);
+        List<Ticket> tickets = ticketRepository.findByResultIsNull();
+        Collections.reverse(expiredTickets);
+        Collections.reverse(unregSchedules);
+        Collections.reverse(regSchedules);
+        Collections.reverse(tickets);
+        model.addAttribute("tickets", tickets);
+        model.addAttribute("expiredTickets", expiredTickets);
+        model.addAttribute("unregSchedules", unregSchedules);
+        model.addAttribute("regSchedules", regSchedules);
         model.addAttribute("doctors", doctors);
+        model.addAttribute("response", response);
     }
 
     @GetMapping("{doctor}")
     public String doctorScheduleList(@PathVariable Doctor doctor, Model model) {
-        List<Schedule> schedules = scheduleRepository.findByDoctor_Id(doctor.getId());
-        List<Ticket> tickets = ticketRepository.findByDoctor_IdAndResultIsNull(doctor.getId());
+        List<Schedule> schedules = scheduleRepository.findByDoctor_IdAndRegistered(doctor.getId(), false);
         List<Ticket> expiredTickets = ticketRepository.findByDoctor_IdAndResultIsNotNull(doctor.getId());
+        List<Ticket> tickets = ticketRepository.findByDoctor_IdAndResultIsNull(doctor.getId());
+        Collections.reverse(schedules);
+        Collections.reverse(expiredTickets);
         Collections.reverse(tickets);
         model.addAttribute("tickets", tickets);
         model.addAttribute("expiredTickets", expiredTickets);
@@ -88,11 +112,17 @@ public class ScheduleController {
         return "doctorScheduleList";
     }
 
-//    @GetMapping("{schedule}")
-//    public String scheduleEdit(@PathVariable Schedule schedule, Model model) {
-//
-//
-//        return "scheduleEdit";
-//    }
+    @GetMapping("/delete/{schedule}")
+    public String saveEditedTicket(
+            @PathVariable Schedule schedule,
+            @RequestParam Map<String, String> form,
+            Model model) {
+
+        if(!schedule.isRegistered()){
+            scheduleRepository.delete(schedule);
+        }
+
+        return "redirect:/schedule";
+    }
 
 }

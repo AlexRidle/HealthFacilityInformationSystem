@@ -1,7 +1,10 @@
 package com.BSUIR.HealthFacilityInformationSystem.service;
 
+import com.BSUIR.HealthFacilityInformationSystem.domain.Department;
+import com.BSUIR.HealthFacilityInformationSystem.domain.Doctor;
 import com.BSUIR.HealthFacilityInformationSystem.domain.Role;
 import com.BSUIR.HealthFacilityInformationSystem.domain.User;
+import com.BSUIR.HealthFacilityInformationSystem.repository.DoctorRepository;
 import com.BSUIR.HealthFacilityInformationSystem.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -10,6 +13,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
+import java.util.Map;
 
 @Service
 public class UserService implements UserDetailsService {
@@ -31,11 +35,12 @@ public class UserService implements UserDetailsService {
             return false;
         }
 
-        if(user.getUsername().equals("root")){
+        if (user.getUsername().equals("root")) {
             user.setRoles(Collections.singleton(Role.ADMIN));
         } else {
             user.setRoles(Collections.singleton(Role.USER));
         }
+
         userRepository.save(user);
 
         return true;

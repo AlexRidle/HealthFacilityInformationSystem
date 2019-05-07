@@ -7,16 +7,16 @@
 <div class="container">
     <a class="btn btn-success btn-lg btn-block mb-3" data-toggle="collapse" href="#unregisteredSchedule" role="button"
        aria-expanded="false"
-       aria-controls="collapseExample">Open unregistered schedules</a>
+       aria-controls="collapseExample">Открыть доступные талоны</a>
     <div class="collapse" id="unregisteredSchedule">
         <div class="form-group">
             <table class="table table-striped">
                 <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Doctor</th>
-                    <th scope="col">Time</th>
-                    <th scope="col">Control</th>
+                    <th scope="col">Отделение</th>
+                    <th scope="col">Дата</th>
+                    <th scope="col">Управление</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -24,10 +24,10 @@
         <#--<tr onclick="window.location='/user/${user.id}';">-->
         <tr>
             <td width="1%">${schedule?counter}</td>
-            <td>${schedule.doctor.user.fullName}</td>
-            <td width="20%">${schedule.getLocalDateTime()}</td>
+            <td>${schedule.doctor.department}</td>
+            <td width="10%">${schedule.localDateTime}</td>
             <td width="1%">
-                <button type="submit" class="btn btn-outline-success" value="${schedule.id}">Open</button>
+                <a class="btn btn-outline-success"  href="/schedule/edit/${schedule.id}">Изменить</a>
             </td>
         </#list>
                 </tr>
@@ -36,28 +36,32 @@
         </div>
     </div>
     <a class="btn btn-danger btn-lg btn-block mb-3" data-toggle="collapse" href="#registeredSchedule" role="button" aria-expanded="false"
-       aria-controls="collapseExample">Open registered tickets</a>
+       aria-controls="collapseExample">Открыть зарегистрированные талоны</a>
     <div class="collapse" id="registeredSchedule">
         <div class="form-group">
             <table class="table table-striped">
                 <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Registered by</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">Result</th>
-                    <th scope="col">Control</th>
+                    <th scope="col">Отделение</th>
+                    <th scope="col">Кем зарегестрирован</th>
+                    <th scope="col">Дата</th>
+                    <th scope="col">Управление</th>
                 </tr>
                 </thead>
                 <tbody>
         <#list tickets as ticket>
         <tr>
             <td width="1%">${ticket?counter}</td>
-            <td width="1%">${ticket.user.fullName}</td>
-            <td width="1%">${ticket.getSchedule().getLocalDateTime()}</td>
-            <td>${ticket.getResult()!}</td>
+            <td width="1%">${ticket.department}</td>
+            <#if ticket.getUser()??>
+            <td>${ticket.user.fullName}</td>
+            <#else>
+            <td>Неизвестный пользователь</td>
+            </#if>
+            <td width="10%">${ticket.schedule.localDateTime}</td>
             <td width="1%">
-                <button type="submit" class="btn btn-outline-danger" value="${ticket.id}">Open</button>
+                <a class="btn btn-outline-danger" href="/ticket/edit/${ticket.id}">Изменить</a>
             </td>
         </#list>
                 </tr>
@@ -66,26 +70,34 @@
         </div>
     </div>
     <a class="btn btn-dark btn-lg btn-block mb-3" data-toggle="collapse" href="#expiredTickets" role="button" aria-expanded="false"
-       aria-controls="collapseExample">Open expired tickets</a>
+       aria-controls="collapseExample">Открыть использованные талоны</a>
     <div class="collapse" id="expiredTickets">
         <div class="form-group">
             <table class="table table-striped">
                 <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Registered by</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">Control</th>
+                    <th scope="col">Отделение</th>
+                    <th scope="col">Кем зарегистрирован</th>
+                    <th scope="col">Заключение</th>
+                    <th scope="col">Дата</th>
+                    <th scope="col">Управление</th>
                 </tr>
                 </thead>
                 <tbody>
         <#list expiredTickets as ticket>
         <tr>
             <td width="1%">${ticket?counter}</td>
-            <td width="1%">${ticket.user.fullName}</td>
-            <td width="1%">${ticket.getSchedule().getLocalDateTime()}</td>
+            <td width="1%">${ticket.department}</td>
+            <#if ticket.getUser()??>
+            <td>${ticket.user.fullName}</td>
+            <#else>
+            <td>Неизвестный пользователь</td>
+            </#if>
+            <td>${ticket.result}</td>
+            <td width="10%">${ticket.schedule.localDateTime}</td>
             <td width="1%">
-                <button type="submit" class="btn btn-outline-dark" value="${ticket.id}">Open</button>
+                <a class="btn btn-outline-dark" href="/ticket/edit/${ticket.id}">Изменить</a>
             </td>
         </#list>
                 </tr>

@@ -25,4 +25,15 @@ public class Doctor {
 
     @Enumerated(EnumType.STRING)
     private Department department;
+
+    private boolean active;
+
+    public Doctor(final User user, final Department department, final boolean active) {
+        this.user = user;
+        this.department = department;
+        this.active = active;
+    }
+
+    public Doctor() {
+    }
 }

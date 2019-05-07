@@ -5,20 +5,20 @@
     <link rel="stylesheet" href="/static/css/style.css">
     <#if response! == "success">
     <div class="alert alert-success" role="alert">
-        Successfully added new schedule!
+        Талоны успешно были добавлены
     </div>
     </#if>
     <#if response! == "with errors">
         <div class="alert alert-warning" role="alert">
-            Some of schedules is already exits, registered unique schedules.
+            Некоторые талоны не были добавлены. Имеются совпадения среди уже доступных талонов
         </div>
     </#if>
-    <h5 class="mt-3 mb-3 text-center featurette-heading"><b>Schedule</b></h5>
+    <h5 class="mt-3 mb-3 text-center featurette-heading"><b>Талоны</b></h5>
     <div class="container">
         <a class="btn btn-secondary btn-lg btn-block mb-3" data-toggle="collapse" href="#createSchedule" role="button"
            aria-expanded="false"
-           aria-controls="collapseExample">Create new schedule</a>
-        <div class="collapse" id="createSchedule">
+           aria-controls="collapseExample">Добавить новый талон</a>
+        <div class="collapse show" id="createSchedule">
                 <form method="post" enctype="multipart/form-data" action="/schedule">
                     <input type="hidden" value="${_csrf.token}" name="_csrf">
                     <div class="form-row">
@@ -36,7 +36,7 @@
                             });
                         </script>
                         <div class="col-md-12 mb-3">
-                            <label for="validationScheduleDates">Dates</label>
+                            <label for="validationScheduleDates">Даты</label>
                             <input type="text" class="form-control datepicker" id="validationScheduleDates"
                                    name="scheduleDates"
                                    placeholder="yyyy-mm-dd,yyyy-mm-dd..." required>
@@ -44,7 +44,7 @@
                     </div>
                     <div class="form-row">
                         <div class="col-md-12 mb-3">
-                            <label for="scheduleTime">Time</label>
+                            <label for="scheduleTime">Время</label>
                             <select class="custom-select" id="scheduleTime" name="scheduleTime">
                                 <option value="08:00:00">8:00</option>
                                 <option value="08:30:00">8:30</option>
@@ -77,7 +77,7 @@
                     </div>
                     <div class="form-row">
                         <div class="col-md-12">
-                            <label for="scheduleDoctors">Doctors</label>
+                            <label for="scheduleDoctors">Врачи</label>
                             <select class="custom-select mb-3" id="scheduleDoctors" name="scheduleDoctors">
                      <#list doctors as doctor>
                          <option value="${doctor.id}">${doctor.user.fullName} (${doctor.department})</option>
@@ -86,22 +86,22 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Add schedule</button>
+                        <button type="submit" class="btn btn-primary">Добавить</button>
                     </div>
                 </form>
         </div>
         <a class="btn btn-secondary btn-lg btn-block mb-3" data-toggle="collapse" href="#editSchedule" role="button"
            aria-expanded="false"
-           aria-controls="collapseExample">Open doctors schedule</a>
+           aria-controls="collapseExample">Открыть список врачей</a>
         <div class="collapse" id="editSchedule">
             <div class="form-group">
                 <table class="table table-striped">
                     <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Full name</th>
-                        <th scope="col">Department</th>
-                        <th scope="col">Control</th>
+                        <th scope="col">Имя</th>
+                        <th scope="col">Отделение</th>
+                        <th scope="col">Управление</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -110,8 +110,7 @@
                         <td width="1%">${doctor?counter}</td>
                             <td>${doctor.user.fullName}</td>
                             <td width="1%">${doctor.department}</td>
-                            <td width="1%"><a class="btn btn-outline-primary" href="/schedule/${doctor.id}">Edit
-                                schedule</a></td>
+                            <td width="1%"><a class="btn btn-outline-primary" href="/schedule/${doctor.id}">Открыть</a></td>
                         </#list>
                     </tr>
                     </tbody>
@@ -120,16 +119,16 @@
         </div>
         <a class="btn btn-success btn-lg btn-block mb-3" data-toggle="collapse" href="#unregisteredSchedule" role="button"
            aria-expanded="false"
-           aria-controls="collapseExample">Open unregistered schedules</a>
+           aria-controls="collapseExample">Открыть незарегистрированные талоны</a>
         <div class="collapse" id="unregisteredSchedule">
             <div class="form-group">
                 <table class="table table-striped">
                     <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Doctor</th>
-                        <th scope="col">Time</th>
-                        <th scope="col">Control</th>
+                        <th scope="col">Врач</th>
+                        <th scope="col">Дата</th>
+                        <th scope="col">Управление</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -137,8 +136,8 @@
                         <tr>
                         <td width="1%">${unregSchedule?counter}</td>
                             <td>${unregSchedule.doctor.user.fullName}</td>
-                            <td width="20%">${unregSchedule.getLocalDateTime()}</td>
-                            <td width="1%"><button type="submit" class="btn btn-outline-success" value="${unregSchedule.id}">Open</button></td>
+                            <td width="10%">${unregSchedule.localDateTime}</td>
+                            <td width="1%"><a class="btn btn-success" href="/schedule/delete/${unregSchedule.id}">Удалить</a></td>
                         </#list>
                     </tr>
                     </tbody>
@@ -147,26 +146,74 @@
         </div>
         <a class="btn btn-danger btn-lg btn-block mb-3" data-toggle="collapse" href="#registeredSchedule" role="button"
            aria-expanded="false"
-           aria-controls="collapseExample">Open registered schedules</a>
+           aria-controls="collapseExample">Открыть зарегистрированные талоны</a>
         <div class="collapse" id="registeredSchedule">
             <div class="form-group">
                 <table class="table table-striped">
                     <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Doctor</th>
-                        <th scope="col">Time</th>
-                        <th scope="col">Control</th>
+                        <th scope="col">Отделение</th>
+                        <th scope="col">Врач</th>
+                        <th scope="col">Кем зарегистрирован</th>
+                        <th scope="col">Дата</th>
+                        <th scope="col">Управление</th>
                     </tr>
                     </thead>
                     <tbody>
-                        <#list regSchedules as regSchedule>
-                        <tr>
-                        <td width="1%">${regSchedule?counter}</td>
-                            <td>${regSchedule.doctor.user.fullName}</td>
-                            <td width="20%">${regSchedule.getLocalDateTime()}</td>
-                            <td width="1%"><button type="submit" class="btn btn-outline-danger" value="${regSchedule.id}">Open</button></td>
-                        </#list>
+        <#list tickets as ticket>
+        <tr>
+            <td width="1%">${ticket?counter}</td>
+            <td width="1%">${ticket.department}</td>
+            <td>${ticket.doctor.user.fullName}</td>
+            <#if ticket.getUser()??>
+            <td>${ticket.user.fullName}</td>
+            <#else>
+            <td>Unregistered user</td>
+            </#if>
+            <td width="10%">${ticket.schedule.localDateTime}</td>
+            <td width="1%">
+                <a class="btn btn-outline-danger" href="/ticket/edit/${ticket.id}">Изменить</a>
+            </td>
+        </#list>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <a class="btn btn-dark btn-lg btn-block mb-3" data-toggle="collapse" href="#expiredTickets" role="button" aria-expanded="false"
+           aria-controls="collapseExample">Открыть использованные талоны</a>
+        <div class="collapse" id="expiredTickets">
+            <div class="form-group">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Отделение</th>
+                        <th scope="col">Врач</th>
+                        <th scope="col">Кем зарегистрирован</th>
+                        <th scope="col">Заключение</th>
+                        <th scope="col">Дата</th>
+                        <th scope="col">Управление</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+        <#list expiredTickets as ticket>
+        <tr>
+            <td width="1%">${ticket?counter}</td>
+            <td width="1%">${ticket.department}</td>
+            <td>${ticket.doctor.user.fullName}</td>
+            <#if ticket.getUser()??>
+            <td>${ticket.user.fullName}</td>
+            <#else>
+            <td>Неизвестный пользователь</td>
+            </#if>
+            <td>${ticket.result}</td>
+            <td width="10%">${ticket.schedule.localDateTime}</td>
+            <td width="1%">
+                <a class="btn btn-outline-dark" href="/ticket/edit/${ticket.id}">Изменить</a>
+            </td>
+        </#list>
                     </tr>
                     </tbody>
                 </table>

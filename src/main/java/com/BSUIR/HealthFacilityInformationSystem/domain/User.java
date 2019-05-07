@@ -86,6 +86,10 @@ public class User implements UserDetails {
         return roles.contains(Role.DOCTOR) || roles.contains(Role.ADMIN);
     }
 
+    public boolean isOnlyDoctor(){
+        return roles.contains(Role.DOCTOR);
+    }
+
     public boolean isEmployee(){
         return roles.contains(Role.ADMIN) ||
         roles.contains(Role.OPERATOR) ||

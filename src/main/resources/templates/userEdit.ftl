@@ -14,7 +14,7 @@
                        placeholder="Username"
                        required>
             </div>
-            <div class="col-md-6 mb-3">
+            <div class="col-md-<#if doctor?has_content>3<#else>6</#if> mb-3">
                 <label for="inputRole">Role</label>
                 <select class="custom-select" id="inputRole" name="inputRole">
                     <#list roles as role>
@@ -22,7 +22,18 @@
                     </#list>
                 </select>
             </div>
+    <#if doctor?has_content>
+            <div class="col-md-3 mb-3">
+                <label for="inputDepartment">Отделение</label>
+                <select class="custom-select" id="inputDepartment" name="department" required>
+                    <#list departments as department>
+                        <option value="${department}" <#if doctor?has_content>${doctor.department?matches(department)?string("selected", "")}</#if>>${department}</option>
+                    </#list>
+                </select>
+            </div>
+    </#if>
         </div>
+
         <div class="form-row">
             <div class="col-md-4 mb-3">
                 <label for="validationFirstName">First name</label>
