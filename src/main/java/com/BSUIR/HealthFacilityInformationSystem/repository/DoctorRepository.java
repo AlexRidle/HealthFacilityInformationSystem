@@ -10,6 +10,7 @@ import java.util.List;
 public interface DoctorRepository extends JpaRepository<Doctor, Long> {
     List<Doctor> findAll();
     List<Doctor> findAllByActive(final boolean active);
+    List<Doctor> findAllByActiveAndDepartment(final boolean active, final Department department);
     List<Doctor> findByDepartment(final Department department);
     Doctor findByUser_Id(final Long user_id);
 

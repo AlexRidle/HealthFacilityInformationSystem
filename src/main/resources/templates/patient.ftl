@@ -6,7 +6,8 @@
     <h5 class="mt-3 mb-3 text-center featurette-heading">Прием пациента</h5>
     <#if isDoctor>
         <div class="container">
-            <a class="btn btn-danger btn-lg btn-block mb-3" data-toggle="collapse" href="#registeredSchedule" role="button" aria-expanded="false"
+            <a class="btn btn-danger btn-lg btn-block mb-3" data-toggle="collapse" href="#registeredSchedule"
+               role="button" aria-expanded="false"
                aria-controls="collapseExample">Список зарегистрированных талонов</a>
             <div class="collapse show" id="registeredSchedule">
                 <div class="form-group">
@@ -40,7 +41,8 @@
                     </table>
                 </div>
             </div>
-            <a class="btn btn-dark btn-lg btn-block mb-3" data-toggle="collapse" href="#expiredTickets" role="button" aria-expanded="false"
+            <a class="btn btn-dark btn-lg btn-block mb-3" data-toggle="collapse" href="#expiredTickets" role="button"
+               aria-expanded="false"
                aria-controls="collapseExample">Открыть использованные талоны</a>
             <div class="collapse" id="expiredTickets">
                 <div class="form-group">
