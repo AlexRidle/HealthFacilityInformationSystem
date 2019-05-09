@@ -67,12 +67,12 @@ public class Ticket {
     @Pattern(regexp = "^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\\s\\./0-9]*$", message = "Недопустимый номер телефона")
     private String phone;
     @NotBlank(message = "Необходимо указать имя")
-    @Pattern(regexp = "([A-Za-zА-Яа-я])\\w+", message = "Имя содержит недопустимые символы")
+//    @Pattern(regexp = "([A-Za-zА-Яа-я])\\w+", message = "Имя содержит недопустимые символы")
     private String firstName;
-    @Pattern(regexp = "([A-Za-zА-Яа-я])\\w+", message = "Отчество содержит недопустимые символы")
+//    @Pattern(regexp = "([A-Za-zА-Яа-я])\\w+", message = "Отчество содержит недопустимые символы")
     @NotBlank(message = "Необходимо указать отчество")
     private String middleName;
-    @Pattern(regexp = "([A-Za-zА-Яа-я])\\w+", message = "Фамилия содержит недопустимые символы")
+//    @Pattern(regexp = "([A-Za-zА-Яа-я])\\w+", message = "Фамилия содержит недопустимые символы")
     @NotBlank(message = "Необходимо указать фамилию")
     private String lastName;
     @DateTimeFormat(pattern = "yyyy-MM-dd")

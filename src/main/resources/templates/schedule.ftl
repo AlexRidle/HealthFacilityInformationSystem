@@ -13,7 +13,7 @@
             Некоторые талоны не были добавлены. Имеются совпадения среди уже доступных талонов
         </div>
     </#if>
-    <h5 class="mt-3 mb-3 text-center featurette-heading"><b>Талоны</b></h5>
+    <h5 class="mt-3 mb-3 text-center featurette-heading">Талоны</h5>
     <div class="container">
         <a class="btn btn-secondary btn-lg btn-block mb-3" data-toggle="collapse" href="#createSchedule" role="button"
            aria-expanded="false"
@@ -85,8 +85,8 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Добавить</button>
+                    <div class="container text-center">
+                        <button type="submit" class="btn btn-primary mb-3">Добавить</button>
                     </div>
                 </form>
         </div>

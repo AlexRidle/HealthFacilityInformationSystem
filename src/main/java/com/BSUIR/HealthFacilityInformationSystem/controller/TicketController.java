@@ -6,10 +6,12 @@ import com.BSUIR.HealthFacilityInformationSystem.domain.Role;
 import com.BSUIR.HealthFacilityInformationSystem.domain.Schedule;
 import com.BSUIR.HealthFacilityInformationSystem.domain.Ticket;
 import com.BSUIR.HealthFacilityInformationSystem.domain.User;
+import com.BSUIR.HealthFacilityInformationSystem.domain.dto.CaptchaResponseDto;
 import com.BSUIR.HealthFacilityInformationSystem.repository.DoctorRepository;
 import com.BSUIR.HealthFacilityInformationSystem.repository.ScheduleRepository;
 import com.BSUIR.HealthFacilityInformationSystem.repository.TicketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,24 +21,33 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.client.RestTemplate;
 
 import javax.validation.Valid;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
 @Controller
 public class TicketController {
+    private static final String CAPTCHA_URL = "https://www.google.com/recaptcha/api/siteverify?secret=%s&response=%s";
+
     private final TicketRepository ticketRepository;
     private final DoctorRepository doctorRepository;
     private final ScheduleRepository scheduleRepository;
+    private final RestTemplate restTemplate;
+
+    @Value("${recaptcha.secret}")
+    private String secret;
 
     @Autowired
-    public TicketController(final TicketRepository ticketRepository, final DoctorRepository doctorRepository, final ScheduleRepository scheduleRepository) {
+    public TicketController(final TicketRepository ticketRepository, final DoctorRepository doctorRepository, final ScheduleRepository scheduleRepository, final RestTemplate restTemplate) {
         this.ticketRepository = ticketRepository;
         this.doctorRepository = doctorRepository;
         this.scheduleRepository = scheduleRepository;
+        this.restTemplate = restTemplate;
     }
 
     @GetMapping("/ticket")
@@ -189,7 +200,7 @@ public class TicketController {
     }
 
     @PostMapping("/ticket3")
-    public String getFormThree(
+    public String getFormThree(@RequestParam("g-recaptcha-response") String captchaResponse,
             @AuthenticationPrincipal @Valid User user,
             @Valid Ticket ticket,
             BindingResult bindingResult,
@@ -223,6 +234,22 @@ public class TicketController {
                 ticket.setRoom(form.get("room"));
                 ticket.setSchedule(scheduleRepository.findById(Long.valueOf(form.get("schedule"))).get());
             }
+            String url = String.format(CAPTCHA_URL, secret, captchaResponse);
+            CaptchaResponseDto response = restTemplate.postForObject(url, Collections.emptyList(), CaptchaResponseDto.class);
+
+            if(!response.isSuccess()){
+                model.addAttribute("message", "captcha");
+                List<Schedule> schedules = scheduleRepository.findByDoctor_IdAndRegistered(Long.valueOf(form.get("doctor")), false);
+                model.addAttribute("schedules", schedules);
+                model.addAttribute("ticket", ticket);
+                model.addAttribute("department", Department.valueOf(form.get("department")));
+                if(bindingResult.hasErrors() && user == null){
+                    Map<String, String> errorsMap = ControllerUtils.getErrors(bindingResult);
+                    model.mergeAttributes(errorsMap);
+                }
+                return "ticket/ticket3";
+            }
+
             if(bindingResult.hasErrors() && user == null){
                 Map<String, String> errorsMap = ControllerUtils.getErrors(bindingResult);
                 model.mergeAttributes(errorsMap);
