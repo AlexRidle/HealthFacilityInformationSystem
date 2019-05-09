@@ -13,7 +13,7 @@
     <form action="/registration" method="post">
         <div class="form-row">
             <div class="col-md-6 mb-3">
-                <label for="validationefaultDUsername">Username</label>
+                <label for="validationUsername">Username</label>
                 <input type="text" class="form-control ${(usernameError??)?string('is-invalid','')}" id="validationUsername" name="username" placeholder="Username"
                        value="<#if user??>${user.username}</#if>" required>
                 <#if usernameError??>
@@ -74,7 +74,6 @@
                         ${emailError}
                     </div>
                 </#if>
-
             </div>
             <div class="col-md-6 mb-3">
                 <label for="validationTel">Phone number</label>

@@ -64,7 +64,7 @@ public class Ticket {
     private Department department;
 
     @NotBlank(message = "Необходимо указать номер телефона")
-    @Pattern(regexp = "^((8|\\+7)[\\- ]?)?(\\(?\\d{3}\\)?[\\- ]?)?[\\d\\- ]{7,11}$", message = "Недопустимый номер телефона")
+    @Pattern(regexp = "^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\\s\\./0-9]*$", message = "Недопустимый номер телефона")
     private String phone;
     @NotBlank(message = "Необходимо указать имя")
     @Pattern(regexp = "([A-Za-zА-Яа-я])\\w+", message = "Имя содержит недопустимые символы")
