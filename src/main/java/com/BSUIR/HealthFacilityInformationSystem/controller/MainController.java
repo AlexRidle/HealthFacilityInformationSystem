@@ -8,14 +8,15 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.Valid;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -55,28 +56,34 @@ public class MainController {
     @PostMapping("/news")
     public String add(
             @AuthenticationPrincipal User user,
-            @RequestParam String title,
-            @RequestParam String text,
-            @RequestParam String tag,
+            @Valid NewsPost newsPost,
+            BindingResult bindingResult,
             @RequestParam("file") MultipartFile file,
-            Map<String, Object> model
+            Model model
             ) throws IOException {
-        final NewsPost newsPost = new NewsPost(title, text, tag, user);
+        newsPost.setAuthor(user);
 
-        if (file != null && !file.getOriginalFilename().isEmpty()) {
-            final File uploadDir = new File(uploadPath);
-            if (!uploadDir.exists()) {
-                uploadDir.mkdir();
+        if(bindingResult.hasErrors()){
+            Map<String, String> errorsMap = ControllerUtils.getErrors(bindingResult);
+            model.mergeAttributes(errorsMap);
+        } else {
+            if (file != null && !file.getOriginalFilename().isEmpty()) {
+                final File uploadDir = new File(uploadPath);
+                if (!uploadDir.exists()) {
+                    uploadDir.mkdir();
+                }
+                final String uuidFile = UUID.randomUUID().toString();
+                final String resultFilename = uuidFile + "." + file.getOriginalFilename();
+                file.transferTo(new File(uploadPath + "/" + resultFilename));
+                newsPost.setFilename(resultFilename);
             }
-            final String uuidFile = UUID.randomUUID().toString();
-            final String resultFilename = uuidFile + "." + file.getOriginalFilename();
-            file.transferTo(new File(uploadPath + "/" + resultFilename));
-            newsPost.setFilename(resultFilename);
+            newsPostRepository.save(newsPost);
         }
-        newsPostRepository.save(newsPost);
+
         final List<NewsPost> newsPosts = newsPostRepository.findAll();
         Collections.reverse(newsPosts);
-        model.put("newsPosts", newsPosts);
+        model.addAttribute("newsPosts", newsPosts);
+        model.addAttribute("newsPost", newsPost);
         return "news";
     }
 }

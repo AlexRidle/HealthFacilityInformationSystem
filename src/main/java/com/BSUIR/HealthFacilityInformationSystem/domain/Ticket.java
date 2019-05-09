@@ -1,6 +1,7 @@
 package com.BSUIR.HealthFacilityInformationSystem.domain;
 
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -11,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 import java.time.LocalDate;
 
 @Data
@@ -60,13 +63,26 @@ public class Ticket {
     @Enumerated(EnumType.STRING)
     private Department department;
 
+    @NotBlank(message = "Необходимо указать номер телефона")
+    @Pattern(regexp = "^((8|\\+7)[\\- ]?)?(\\(?\\d{3}\\)?[\\- ]?)?[\\d\\- ]{7,11}$", message = "Недопустимый номер телефона")
     private String phone;
+    @NotBlank(message = "Необходимо указать имя")
+    @Pattern(regexp = "([A-Za-zА-Яа-я])\\w+", message = "Имя содержит недопустимые символы")
     private String firstName;
+    @Pattern(regexp = "([A-Za-zА-Яа-я])\\w+", message = "Отчество содержит недопустимые символы")
+    @NotBlank(message = "Необходимо указать отчество")
     private String middleName;
+    @Pattern(regexp = "([A-Za-zА-Яа-я])\\w+", message = "Фамилия содержит недопустимые символы")
+    @NotBlank(message = "Необходимо указать фамилию")
     private String lastName;
+    @NotBlank(message = "Необходимо указать дату рождения")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthDate;
+    @NotBlank(message = "Необходимо указать адрес")
     private String address;
+    @NotBlank(message = "")
     private String house;
+    @NotBlank(message = "")
     private String room;
     private String result;
 }

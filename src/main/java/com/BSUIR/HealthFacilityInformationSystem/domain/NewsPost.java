@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
 @Data
 @Entity // This tells Hibernate to make a table out of this class
@@ -27,10 +29,10 @@ public class NewsPost {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
 
+    @NotBlank(message = "Заголовок не может быть пустым")
     private String title;
-
+    @NotBlank(message = "Введите текст новости")
     private String text;
-
     private String tag;
 
     private String filename;
