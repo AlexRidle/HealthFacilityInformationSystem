@@ -88,7 +88,9 @@
                         <small class="text-muted">${newsPost.tag}</small>
                     </p>
                 </div>
-                <div class="card-footer text-muted">${newsPost.authorName}</div>
+                <#if isEmployee>
+                <div class="card-footer text-muted"><a class="btn btn-outline-danger" href="/news/delete/${newsPost.id}">Удалить</a></div>
+                </#if>
             </div>
              <#if newsPost?counter % 2 == 0>
              <div class="w-100 d-none d-sm-block d-md-none"><!-- wrap every 2 on sm--></div>
