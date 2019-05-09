@@ -12,6 +12,7 @@
             <column name="first_name" value="Root"/>
             <column name="middle_name" value="Rootovich"/>
             <column name="last_name" value="Rootov"/>
+            <column name="birth_date" value="1990-05-19"/>
             <column name="address" value="St. Rootovskaya"/>
             <column name="house" value="123/4"/>
             <column name="room" value="0000"/>
@@ -25,6 +26,7 @@
             <column name="first_name" value="User"/>
             <column name="middle_name" value="Userovich"/>
             <column name="last_name" value="Userov"/>
+            <column name="birth_date" value="1956-04-30"/>
             <column name="address" value="St. Userova"/>
             <column name="house" value="111/1"/>
             <column name="room" value="11"/>
@@ -38,6 +40,7 @@
             <column name="first_name" value="Doctor"/>
             <column name="middle_name" value="Doctorovich"/>
             <column name="last_name" value="Doctorov"/>
+            <column name="birth_date" value="2000-11-05"/>
             <column name="address" value="St. Doctorovskaya"/>
             <column name="house" value="666"/>
             <column name="room" value="66"/>
@@ -51,6 +54,7 @@
             <column name="first_name" value="Operator"/>
             <column name="middle_name" value="Operatorovich"/>
             <column name="last_name" value="Operatorov"/>
+            <column name="birth_date" value="1993-02-23"/>
             <column name="address" value="St. Operatorskaya"/>
             <column name="house" value="000"/>
             <column name="room" value="123"/>
@@ -75,17 +79,18 @@
             <column name="id" valueNumeric="1"/>
             <column name="user_id" value="3"/>
             <column name="department" value="STOMATOLOGY"/>
+            <column name="active" value="1"/>
         </insert>
         <insert tableName="schedule">
             <column name="id" valueNumeric="1"/>
             <column name="doctor_id" value="1"/>
-            <column name="date_and_time" value="12.12.2012 12:12"/>
+            <column name="schedule_date" value="2012-12-12 12:12:00"/>
             <column name="registered" value="1"/>
         </insert>
         <insert tableName="schedule">
             <column name="id" valueNumeric="2"/>
             <column name="doctor_id" value="1"/>
-            <column name="date_and_time" value="11.11.2111 11:11"/>
+            <column name="schedule_date" value="2011-11-11 11:11:00"/>
             <column name="registered" value="0"/>
         </insert>
         <insert tableName="ticket">
@@ -99,6 +104,7 @@
             <column name="first_name" value="User"/>
             <column name="middle_name" value="Userovich"/>
             <column name="last_name" value="Userov"/>
+            <column name="birth_date" value="1956-04-30"/>
             <column name="address" value="St. Userova"/>
             <column name="house" value="111/1"/>
             <column name="room" value="11"/>

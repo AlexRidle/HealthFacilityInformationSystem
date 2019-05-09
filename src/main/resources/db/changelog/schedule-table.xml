@@ -14,7 +14,7 @@
                 <constraints nullable="false" primaryKeyName="PK_schedule_doctor_id" foreignKeyName="fk_schedule_doctor_id" references="doctor(id)"/>
             </column>
 
-            <column name="date_and_time" type="TEXT">
+            <column name="schedule_date" type="TIMESTAMP">
                 <constraints nullable="false" />
             </column>
 

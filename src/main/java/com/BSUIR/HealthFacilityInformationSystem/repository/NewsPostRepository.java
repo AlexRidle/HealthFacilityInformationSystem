@@ -8,5 +8,7 @@ import java.util.List;
 
 public interface NewsPostRepository extends CrudRepository<NewsPost, Integer> {
 
+    List<NewsPost> findAll();
+
     List<NewsPost> findByTag(final String doctor);
 }

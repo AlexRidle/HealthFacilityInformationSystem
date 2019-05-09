@@ -1,17 +1,17 @@
 <#import "parts/common.ftl" as c>
 
 <@c.page>
-<link rel="stylesheet" href="/static/style.css">
-<h5 class="mt-3 mb-3 text-center featurette-heading">List of users:</h5>
+<link rel="stylesheet" href="/static/css/style.css">
+<h5 class="mt-3 mb-3 text-center featurette-heading">Список зарегистрированных пользователей:</h5>
 <div class="mb-3 ml-3 mr-3">
     <table class="table table-striped">
         <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">Username</th>
-            <th scope="col">Role</th>
-            <th scope="col">Full name</th>
-            <th scope="col">Control</th>
+            <th scope="col">Логин</th>
+            <th scope="col">Роль</th>
+            <th scope="col">Полное имя</th>
+            <th scope="col">Управление</th>
         </tr>
         </thead>
         <tbody>
@@ -22,7 +22,7 @@
             <td width="15%">${user.username}</td>
             <td width="15%"><#list user.roles as role>${role}<#sep>, </#list></td>
             <td> ${user.getFullName()}</td>
-            <td width="5%"><a class="btn btn-outline-primary" href="/user/${user.id}">Edit</a></td>
+            <td width="5%"><a class="btn btn-outline-primary" href="/user/${user.id}">Изменить</a></td>
         </#list>
     </tr>
         </tbody>

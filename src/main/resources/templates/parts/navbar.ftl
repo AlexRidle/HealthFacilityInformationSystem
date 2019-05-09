@@ -10,20 +10,35 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="/news">News</a>
+                <a class="nav-link" href="/news">Новости</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/account">Account</a>
+                <a class="nav-link" href="/ticket">Заказ талона</a>
             </li>
-            <#if isAdmin>
             <li class="nav-item">
-                <a class="nav-link" href="/user">Registered users</a>
+                <a class="nav-link" href="/account">Аккаунт</a>
+            </li>
+            <#if isEmployee>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="employeesDropdown" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">Для сотрудников</a>
+                <div class="dropdown-menu" aria-labelledby="employeesDropdown">
+                    <#if isDoctor>
+                <a class="dropdown-item" href="/patient">Прием пациента</a>
+                    </#if>
+                <#if isOperator>
+                <a class="dropdown-item" href="/schedule">Редактор талонов</a>
+                </#if>
+                <#if isAdmin>
+                <a class="dropdown-item" href="/user">Зарегистрированные пользователи</a>
+                </#if>
+                </div>
             </li>
             </#if>
         </ul>
 
         <#if known>
-        <div class="navbar-text mr-3">Hello, ${name}!</div>
+        <div class="navbar-text mr-3">Добро пожаловать, ${name}!</div>
         </#if>
         <@logout />
     </div>
@@ -33,9 +48,9 @@
     <#if known>
 <form action="/logout" method="post">
     <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-    <button class="btn btn-outline-primary" type="submit">Sign Out</button>
+    <button class="btn btn-outline-primary" type="submit">Выйти</button>
 </form>
     <#else>
-<a class="btn btn-outline-primary" href="/login">Sign in</a>
+<a class="btn btn-outline-primary" href="/login">Вход</a>
     </#if>
 </#macro>

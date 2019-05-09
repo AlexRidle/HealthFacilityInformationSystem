@@ -114,3 +114,12 @@ body {
     -ms-user-select: none;
     user-select: none;
 }
+
+.max-card-width {
+    max-width: 350px;
+}
+
+.captcha-center {
+    margin: auto;
+    width: 304px;
+}
