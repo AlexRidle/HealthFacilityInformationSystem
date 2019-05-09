@@ -15,18 +15,33 @@
             <div class="form-row">
                 <div class="col-md-4 mb-3">
                     <label for="validationFirstName">Имя</label>
-                    <input type="text" class="form-control" id="validationFirstName" name="firstName"
-                           placeholder="First name" value="${ticket.firstName}" required>
+                    <input type="text" class="form-control ${(firstNameError??)?string('is-invalid','')}" id="validationFirstName" name="firstName"
+                           placeholder="First name" value="<#if ticket??>${ticket.firstName}</#if>" required>
+                <#if firstNameError??>
+                    <div class="invalid-feedback">
+                        ${firstNameError}
+                    </div>
+                </#if>
                 </div>
                 <div class="col-md-4 mb-3">
                     <label for="validationMiddleName">Отчество</label>
-                    <input type="text" class="form-control" id="validationMiddleName" name="middleName"
-                           placeholder="Middle name" value="${ticket.middleName}" required>
+                    <input type="text" class="form-control ${(middleNameError??)?string('is-invalid','')}" id="validationMiddleName" name="middleName"
+                           placeholder="Middle name" value="<#if ticket??>${ticket.middleName}</#if>" required>
+                <#if middleNameError??>
+                    <div class="invalid-feedback">
+                        ${middleNameError}
+                    </div>
+                </#if>
                 </div>
                 <div class="col-md-4 mb-3">
                     <label for="validationLastName">Фамилия</label>
-                    <input type="text" class="form-control" id="validationLastName" name="lastName"
-                           placeholder="Last name" value="${ticket.lastName}" required>
+                    <input type="text" class="form-control ${(lastNameError??)?string('is-invalid','')}" id="validationLastName" name="lastName" placeholder="Last name"
+                           value="<#if ticket??>${ticket.lastName}</#if>" required>
+                <#if lastNameError??>
+                    <div class="invalid-feedback">
+                        ${lastNameError}
+                    </div>
+                </#if>
                 </div>
             </div>
             <div class="form-row">
@@ -44,29 +59,54 @@
                     });
                 </script>
                 <div class="col-md-2 mb-3">
-                    <label for="validationBirth">Date of birth</label>
-                    <input type="text" class="form-control datepicker" id="validationBirth" name="birthDate"
-                           placeholder="yyyy-mm-dd" value="${ticket.birthDate}" required>
+                    <label for="validationBirth">Дата рождения</label>
+                    <input type="text" class="form-control datepicker ${(birthDateError??)?string('is-invalid','')}" id="validationBirth" name="birthDate" placeholder="yyyy-mm-dd"
+                           value="<#if ticket??>${ticket.birthDate}</#if>" required>
+                <#if birthDateError??>
+                    <div class="invalid-feedback">
+                        ${birthDateError}
+                    </div>
+                </#if>
                 </div>
                 <div class="col-md-3 mb-3">
-                    <label for="validationTel">Phone number</label>
-                    <input type="tel" class="form-control" id="validationTel" name="phone"
-                           placeholder="+375(12)345-67-89" value="${ticket.phone}" required>
+                    <label for="validationTel">Номер телефона</label>
+                    <input type="tel" class="form-control ${(phoneError??)?string('is-invalid','')}" id="validationTel" placeholder="+375(12)345-67-89" name="phone"
+                           value="<#if ticket??>${ticket.phone}</#if>" required>
+                <#if phoneError??>
+                    <div class="invalid-feedback">
+                        ${phoneError}
+                    </div>
+                </#if>
                 </div>
                 <div class="col-md-5 mb-3">
-                    <label for="validationAddress">Address</label>
-                    <input type="text" class="form-control" id="validationAddress" name="address"
-                           placeholder="Address" value="${ticket.address}" required>
+                    <label for="validationAddress">Адрес проживания</label>
+                    <input type="text" class="form-control ${(addressError??)?string('is-invalid','')}" id="validationAddress" name="address"  placeholder="Address"
+                           value="<#if ticket??>${ticket.address}</#if>" required>
+                <#if addressError??>
+                    <div class="invalid-feedback">
+                        ${addressError}
+                    </div>
+                </#if>
                 </div>
                 <div class="col-md-1 mb-3">
-                    <label for="validationHouse">House</label>
-                    <input type="text" class="form-control" id="validationHouse" name="house" placeholder="House"
-                           value="${ticket.house}" required>
+                    <label for="validationHouse">Дом</label>
+                    <input type="text" class="form-control ${(houseError??)?string('is-invalid','')}" id="validationHouse" name="house" placeholder="House"
+                           value="<#if ticket??>${ticket.house}</#if>" required>
+                <#if houseError??>
+                    <div class="invalid-feedback">
+                        ${houseError}
+                    </div>
+                </#if>
                 </div>
                 <div class="col-md-1 mb-3">
-                    <label for="validationRoom">Room</label>
-                    <input type="text" class="form-control" id="validationRoom" name="room" placeholder="Room"
-                           value="${ticket.room}" required>
+                    <label for="validationRoom">Кв.</label>
+                    <input type="text" class="form-control ${(roomError??)?string('is-invalid','')}" id="validationRoom" name="room" placeholder="Room"
+                           value="<#if ticket??>${ticket.room}</#if>" required>
+                <#if roomError??>
+                    <div class="invalid-feedback">
+                        ${roomError}
+                    </div>
+                </#if>
                 </div>
             </div>
             <@mainTicket />

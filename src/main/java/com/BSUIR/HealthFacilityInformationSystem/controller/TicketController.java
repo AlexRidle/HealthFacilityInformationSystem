@@ -66,112 +66,119 @@ public class TicketController {
     @PostMapping("/ticket")
     public String getFormOne(
             @AuthenticationPrincipal User user,
+            @Valid Ticket ticket,
+            BindingResult bindingResult,
             @RequestParam Map<String, String> form,
             Model model) {
 
         //if date is not registered
         try {
-            Ticket ticket;
             if (user != null) {
-                ticket = new Ticket(user,
-                        null,
-                        Department.valueOf(form.get("department")),
-                        user.getPhone(),
-                        user.getFirstName(),
-                        user.getMiddleName(),
-                        user.getLastName(),
-                        user.getBirthDate(),
-                        user.getAddress(),
-                        user.getHouse(),
-                        user.getRoom(),
-                        null,
-                        null);
+                ticket.setUser(user);
+                ticket.setDepartment(Department.valueOf(form.get("department")));
+                ticket.setPhone(user.getPhone());
+                ticket.setFirstName(user.getFirstName());
+                ticket.setMiddleName(user.getMiddleName());
+                ticket.setLastName(user.getLastName());
+                ticket.setBirthDate(user.getBirthDate());
+                ticket.setAddress(user.getAddress());
+                ticket.setHouse(user.getHouse());
+                ticket.setRoom(user.getRoom());
             } else {
-                ticket = new Ticket(null,
-                        null,
-                        Department.valueOf(form.get("department")),
-                        form.get("phone"),
-                        form.get("firstName"),
-                        form.get("middleName"),
-                        form.get("lastName"),
-                        LocalDate.parse(form.get("birthDate")),
-                        form.get("address"),
-                        form.get("house"),
-                        form.get("room"),
-                        null,
-                        null);
+                ticket.setDepartment(Department.valueOf(form.get("department")));
+                ticket.setPhone(form.get("phone"));
+                ticket.setFirstName(form.get("firstName"));
+                ticket.setMiddleName(form.get("middleName"));
+                ticket.setLastName(form.get("lastName"));
+                ticket.setBirthDate(LocalDate.parse(form.get("birthDate")));
+                ticket.setAddress(form.get("address"));
+                ticket.setHouse(form.get("house"));
+                ticket.setRoom(form.get("room"));
             }
-            model.addAttribute("ticket", ticket);
-            List<Doctor> doctors = doctorRepository.findAllByActiveAndDepartment(true, Department.valueOf(form.get("department")));
-            model.addAttribute("user", user);
-            if(doctors.isEmpty()){
-                model.addAttribute("response", "empty");
+            if(bindingResult.hasErrors() && user == null){
+                Map<String, String> errorsMap = ControllerUtils.getErrors(bindingResult);
+                model.mergeAttributes(errorsMap);
+                model.addAttribute("ticket", ticket);
                 model.addAttribute("departments", Department.values());
                 return "ticket/ticket";
+            } else {
+                model.addAttribute("ticket", ticket);
+                List<Doctor> doctors = doctorRepository.findAllByActiveAndDepartment(true, Department.valueOf(form.get("department")));
+                model.addAttribute("user", user);
+                if(doctors.isEmpty()){
+                    model.addAttribute("response", "empty");
+                    model.addAttribute("departments", Department.values());
+                    return "ticket/ticket";
+                }
+                model.addAttribute("doctors", doctors);
+                model.addAttribute("department", Department.valueOf(form.get("department")));
+                return "ticket/ticket2";
             }
-            model.addAttribute("doctors", doctors);
-            model.addAttribute("department", Department.valueOf(form.get("department")));
-            return "ticket/ticket2";
         } catch (DateTimeParseException e) {
             model.addAttribute("response", "error");
             model.addAttribute("user", user);
             model.addAttribute("departments", Department.values());
             return "ticket/ticket";
         }
-
     }
 
     @PostMapping("/ticket2")
     public String getFormTwo(
             @AuthenticationPrincipal User user,
+            @Valid Ticket ticket,
+            BindingResult bindingResult,
             @RequestParam Map<String, String> form,
             Model model) {
 
         //if date is not registered
         try {
-            Ticket ticket;
             if (user != null) {
-                ticket = new Ticket(user,
-                        doctorRepository.findById(Long.valueOf(form.get("doctor"))).get(),
-                        Department.valueOf(form.get("department")),
-                        user.getPhone(),
-                        user.getFirstName(),
-                        user.getMiddleName(),
-                        user.getLastName(),
-                        user.getBirthDate(),
-                        user.getAddress(),
-                        user.getHouse(),
-                        user.getRoom(),
-                        null,
-                        null);
+                ticket.setDoctor(doctorRepository.findById(Long.valueOf(form.get("doctor"))).get());
+                ticket.setUser(user);
+                ticket.setDepartment(Department.valueOf(form.get("department")));
+                ticket.setPhone(user.getPhone());
+                ticket.setFirstName(user.getFirstName());
+                ticket.setMiddleName(user.getMiddleName());
+                ticket.setLastName(user.getLastName());
+                ticket.setBirthDate(user.getBirthDate());
+                ticket.setAddress(user.getAddress());
+                ticket.setHouse(user.getHouse());
+                ticket.setRoom(user.getRoom());
             } else {
-                ticket = new Ticket(null,
-                        doctorRepository.findById(Long.valueOf(form.get("doctor"))).get(),
-                        Department.valueOf(form.get("department")),
-                        form.get("phone"),
-                        form.get("firstName"),
-                        form.get("middleName"),
-                        form.get("lastName"),
-                        LocalDate.parse(form.get("birthDate")),
-                        form.get("address"),
-                        form.get("house"),
-                        form.get("room"),
-                        null,
-                        null);
+                ticket.setDoctor(doctorRepository.findById(Long.valueOf(form.get("doctor"))).get());
+                ticket.setDepartment(Department.valueOf(form.get("department")));
+                ticket.setPhone(form.get("phone"));
+                ticket.setFirstName(form.get("firstName"));
+                ticket.setMiddleName(form.get("middleName"));
+                ticket.setLastName(form.get("lastName"));
+                ticket.setBirthDate(LocalDate.parse(form.get("birthDate")));
+                ticket.setAddress(form.get("address"));
+                ticket.setHouse(form.get("house"));
+                ticket.setRoom(form.get("room"));
             }
-            model.addAttribute("ticket", ticket);
-            List<Schedule> schedules = scheduleRepository.findByDoctor_IdAndRegistered(Long.valueOf(form.get("doctor")), false);
-            List<Doctor> doctors = doctorRepository.findAllByActiveAndDepartment(true, Department.valueOf(form.get("department")));
-            model.addAttribute("user", user);
-            if(schedules.isEmpty()) {
+            if(bindingResult.hasErrors() && user == null){
+                Map<String, String> errorsMap = ControllerUtils.getErrors(bindingResult);
+                model.mergeAttributes(errorsMap);
                 model.addAttribute("response", "empty");
+                List<Doctor> doctors = doctorRepository.findAllByActiveAndDepartment(true, Department.valueOf(form.get("department")));
                 model.addAttribute("doctors", doctors);
                 model.addAttribute("department", Department.valueOf(form.get("department")));
                 return "ticket/ticket2";
+            } else {
+                model.addAttribute("ticket", ticket);
+                List<Schedule> schedules = scheduleRepository.findByDoctor_IdAndRegistered(Long.valueOf(form.get("doctor")), false);
+                List<Doctor> doctors = doctorRepository.findAllByActiveAndDepartment(true, Department.valueOf(form.get("department")));
+                model.addAttribute("user", user);
+                if(schedules.isEmpty()) {
+                    model.addAttribute("response", "empty");
+                    model.addAttribute("doctors", doctors);
+                    model.addAttribute("department", Department.valueOf(form.get("department")));
+                    return "ticket/ticket2";
+                }
+                model.addAttribute("department", Department.valueOf(form.get("department")));
+                model.addAttribute("schedules", schedules);
+                return "ticket/ticket3";
             }
-            model.addAttribute("department", Department.valueOf(form.get("department")));
-            model.addAttribute("schedules", schedules);
-            return "ticket/ticket3";
         } catch (DateTimeParseException e) {
             model.addAttribute("response", "error");
             model.addAttribute("user", user);
@@ -184,53 +191,54 @@ public class TicketController {
     @PostMapping("/ticket3")
     public String getFormThree(
             @AuthenticationPrincipal @Valid User user,
-            @RequestParam Map<String, String> form,
+            @Valid Ticket ticket,
             BindingResult bindingResult,
+            @RequestParam Map<String, String> form,
             Model model) {
-        if(bindingResult.hasErrors()){
-            Map<String, String> errorsMap = ControllerUtils.getErrors(bindingResult);
-            model.mergeAttributes(errorsMap);
-        } else {
-
-        }
         //if date is not registered
         try {
-            Ticket ticket;
             if (user != null) {
-                ticket = new Ticket(user,
-                        doctorRepository.findById(Long.valueOf(form.get("doctor"))).get(),
-                        Department.valueOf(form.get("department")),
-                        user.getPhone(),
-                        user.getFirstName(),
-                        user.getMiddleName(),
-                        user.getLastName(),
-                        user.getBirthDate(),
-                        user.getAddress(),
-                        user.getHouse(),
-                        user.getRoom(),
-                        scheduleRepository.findById(Long.valueOf(form.get("schedule"))).get(),
-                        null);
+                ticket.setDoctor(doctorRepository.findById(Long.valueOf(form.get("doctor"))).get());
+                ticket.setUser(user);
+                ticket.setDepartment(Department.valueOf(form.get("department")));
+                ticket.setPhone(user.getPhone());
+                ticket.setFirstName(user.getFirstName());
+                ticket.setMiddleName(user.getMiddleName());
+                ticket.setLastName(user.getLastName());
+                ticket.setBirthDate(user.getBirthDate());
+                ticket.setAddress(user.getAddress());
+                ticket.setHouse(user.getHouse());
+                ticket.setRoom(user.getRoom());
+                ticket.setSchedule(scheduleRepository.findById(Long.valueOf(form.get("schedule"))).get());
             } else {
-                ticket = new Ticket(null,
-                        doctorRepository.findById(Long.valueOf(form.get("doctor"))).get(),
-                        Department.valueOf(form.get("department")),
-                        form.get("phone"),
-                        form.get("firstName"),
-                        form.get("middleName"),
-                        form.get("lastName"),
-                        LocalDate.parse(form.get("birthDate")),
-                        form.get("address"),
-                        form.get("house"),
-                        form.get("room"),
-                        scheduleRepository.findById(Long.valueOf(form.get("schedule"))).get(),
-                        null);
+                ticket.setDoctor(doctorRepository.findById(Long.valueOf(form.get("doctor"))).get());
+                ticket.setDepartment(Department.valueOf(form.get("department")));
+                ticket.setPhone(form.get("phone"));
+                ticket.setFirstName(form.get("firstName"));
+                ticket.setMiddleName(form.get("middleName"));
+                ticket.setLastName(form.get("lastName"));
+                ticket.setBirthDate(LocalDate.parse(form.get("birthDate")));
+                ticket.setAddress(form.get("address"));
+                ticket.setHouse(form.get("house"));
+                ticket.setRoom(form.get("room"));
+                ticket.setSchedule(scheduleRepository.findById(Long.valueOf(form.get("schedule"))).get());
             }
-            model.addAttribute("ticket", ticket);
-            ticketRepository.save(ticket);
-            Schedule schedule = scheduleRepository.findById(Long.valueOf(form.get("schedule"))).get();
-            schedule.setRegistered(true);
-            scheduleRepository.save(schedule);
-            return "ticket/ticket_final";
+            if(bindingResult.hasErrors() && user == null){
+                Map<String, String> errorsMap = ControllerUtils.getErrors(bindingResult);
+                model.mergeAttributes(errorsMap);
+                List<Schedule> schedules = scheduleRepository.findByDoctor_IdAndRegistered(Long.valueOf(form.get("doctor")), false);
+                model.addAttribute("schedules", schedules);
+                model.addAttribute("ticket", ticket);
+                model.addAttribute("department", Department.valueOf(form.get("department")));
+                return "ticket/ticket3";
+            } else {
+                model.addAttribute("ticket", ticket);
+                ticketRepository.save(ticket);
+                Schedule schedule = scheduleRepository.findById(Long.valueOf(form.get("schedule"))).get();
+                schedule.setRegistered(true);
+                scheduleRepository.save(schedule);
+                return "ticket/ticket_final";
+            }
         } catch (DateTimeParseException e) {
             model.addAttribute("response", "error");
             model.addAttribute("user", user);
@@ -248,6 +256,7 @@ public class TicketController {
         }
 
     }
+
 //    @PostMapping
 //    public String addTicket(
 //            @AuthenticationPrincipal User user,

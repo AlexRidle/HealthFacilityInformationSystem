@@ -25,7 +25,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                    .antMatchers("/", "/news", "/registration", "/static/**", "/img/**", "/uploads/**", "/ticket/**", "/ticket2/**").permitAll()
+                    .antMatchers("/", "/news", "/registration", "/static/**", "/img/**", "/uploads/**", "/ticket/**", "/ticket2/**", "/ticket3/**").permitAll()
                     .anyRequest().authenticated()
                 .and()
                     .formLogin()

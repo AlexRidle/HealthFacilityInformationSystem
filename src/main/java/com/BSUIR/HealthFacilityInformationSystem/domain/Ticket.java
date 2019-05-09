@@ -75,7 +75,6 @@ public class Ticket {
     @Pattern(regexp = "([A-Za-zА-Яа-я])\\w+", message = "Фамилия содержит недопустимые символы")
     @NotBlank(message = "Необходимо указать фамилию")
     private String lastName;
-    @NotBlank(message = "Необходимо указать дату рождения")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthDate;
     @NotBlank(message = "Необходимо указать адрес")
