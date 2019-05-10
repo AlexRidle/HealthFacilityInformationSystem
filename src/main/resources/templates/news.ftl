@@ -11,70 +11,77 @@
     <#else>
         <h3 class="mt-3 mb-3 text-center featurette-heading">На данный момент новостей нет</h3>
     </#if>
-<div class="container">
-            <form method="get" action="/news">
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" name="filter" placeholder="Введите тэг для поиска" value="${filter!}" aria-describedby="button-addon2">
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Найти</button>
-                    </div>
+    <div class="container">
+        <form method="get" action="/news">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" name="filter" placeholder="Введите тэг для поиска"
+                       value="${filter!}" aria-describedby="button-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Найти</button>
                 </div>
-                <#--<input type="text" name="filter" class="form-control" value="${filter!}"-->
-                       <#--placeholder="Введите тэг для поиска">-->
-                <#--<button type="submit" class="btn btn-primary ml-2">Найти</button>-->
-            </form>
+            </div>
+        <#--<input type="text" name="filter" class="form-control" value="${filter!}"-->
+        <#--placeholder="Введите тэг для поиска">-->
+        <#--<button type="submit" class="btn btn-primary ml-2">Найти</button>-->
+        </form>
+    </div>
     <#if isEmployee>
-        <a class="btn btn-outline-secondary btn-lg btn-block mb-3" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false"
+    <div class="container">
+        <a class="btn btn-outline-secondary btn-lg btn-block mb-3" data-toggle="collapse" href="#collapseExample"
+           role="button" aria-expanded="false"
            aria-controls="collapseExample">
             Создать новость
         </a>
-    <div class="collapse <#if newsPost??>show</#if>" id="collapseExample">
-        <div class="form-group mt-3">
-            <form method="post" enctype="multipart/form-data">
-                <div class="form-group">
-                    <input type="text" class="form-control ${(titleError??)?string('is-invalid','')}"
-                           value="<#if newsPost??>${newsPost.title}</#if>" name="title" placeholder="Заголовок">
+        <div class="collapse <#if newsPost??>show</#if>" id="collapseExample">
+            <div class="form-group mt-3">
+                <form method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <input type="text" class="form-control ${(titleError??)?string('is-invalid','')}"
+                               value="<#if newsPost??>${newsPost.title}</#if>" name="title" placeholder="Заголовок">
                     <#if textError??>
                     <div class="invalid-feedback">
                         ${titleError}
                     </div>
                     </#if>
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control ${(textError??)?string('is-invalid','')}"
-                           value="<#if newsPost??>${newsPost.text}</#if>" name="text" placeholder="Сообщение">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control ${(textError??)?string('is-invalid','')}"
+                               value="<#if newsPost??>${newsPost.text}</#if>" name="text" placeholder="Сообщение">
                     <#if textError??>
                     <div class="invalid-feedback">
                         ${textError}
                     </div>
                     </#if>
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" name="tag" placeholder="Тэг"/>
-                </div>
-                <div class="form-group">
-                    <div class="custom-file">
-                        <input type="file" name="file" class="custom-file-input" id="customFile">
-                        <label class="custom-file-label" for="customFile">Выберите изображение</label>
                     </div>
-                </div>
-                <script>
-                    $('#customFile').on('change', function () {
-                        //get the file name
-                        var fileName = $(this).val();
-                        fileName = fileName.replace("C:\\fakepath\\", "");
-                        //replace the "Choose a file" label
-                        $(this).next('.custom-file-label').html(fileName);
-                    })
-                </script>
-                <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-                <div class="form-group text-center">
-                    <button type="submit" class="btn btn-success">Добавить новость</button>
-                </div>
-            </form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="tag" placeholder="Тэг"/>
+                    </div>
+                    <div class="form-group">
+                        <div class="custom-file">
+                            <input type="file" name="file" class="custom-file-input" id="customFile">
+                            <label class="custom-file-label" for="customFile">Выберите изображение</label>
+                        </div>
+                    </div>
+                    <script>
+                        $('#customFile').on('change', function () {
+                            //get the file name
+                            var fileName = $(this).val();
+                            fileName = fileName.replace("C:\\fakepath\\", "");
+                            //replace the "Choose a file" label
+                            $(this).next('.custom-file-label').html(fileName);
+                        })
+                    </script>
+                    <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+                    <div class="form-group text-center">
+                        <button type="submit" class="btn btn-success">Добавить новость</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
+
     </#if>
+<div class="mb-3 ml-3 mr-3 mt-5">
     <div class="card-mb-3 card-deck centered">
         <#list newsPosts as newsPost>
             <div class="card mb-3 max-card-width">
@@ -89,7 +96,8 @@
                     </p>
                 </div>
                 <#if isEmployee>
-                <div class="card-footer text-muted"><a class="btn btn-outline-danger" href="/news/delete/${newsPost.id}">Удалить</a></div>
+                <div class="card-footer text-muted"><a class="btn btn-outline-danger"
+                                                       href="/news/delete/${newsPost.id}">Удалить</a></div>
                 </#if>
             </div>
              <#if newsPost?counter % 2 == 0>
@@ -107,4 +115,5 @@
         </#list>
     </div>
 </div>
+    <#include "parts/footer.ftl">
 </@c.page>

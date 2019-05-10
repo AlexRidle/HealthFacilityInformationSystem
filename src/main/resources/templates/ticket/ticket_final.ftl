@@ -73,6 +73,8 @@
             <@mainTicket />
         </#if>
 </div>
+    <#include "../parts/footer.ftl">
+
 </@c.page>
 
 <#macro mainTicket>

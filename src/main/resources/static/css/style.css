@@ -123,3 +123,10 @@ body {
     margin: auto;
     width: 304px;
 }
+
+.rounded-img-150{
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    margin: auto;
+}

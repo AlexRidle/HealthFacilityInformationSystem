@@ -154,4 +154,5 @@
         <input type="hidden" name="_csrf" value="${_csrf.token}"/>
     </form>
 </div>
+    <#include "parts/footer.ftl">
 </@c.page>

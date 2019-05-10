@@ -82,4 +82,6 @@
     <#else>
     <h4 class="mt-3 mb-3 text-center featurette-heading"><b>Данный раздел доступен только врачу</b></h4>
     </#if>
+    <#include "parts/footer.ftl">
+
 </@c.page>

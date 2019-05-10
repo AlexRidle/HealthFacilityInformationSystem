@@ -18,7 +18,7 @@
         <a class="btn btn-secondary btn-lg btn-block mb-3" data-toggle="collapse" href="#createSchedule" role="button"
            aria-expanded="false"
            aria-controls="collapseExample">Добавить новый талон</a>
-        <div class="collapse show" id="createSchedule">
+        <div class="collapse <#if response??>show</#if>" id="createSchedule">
                 <form method="post" enctype="multipart/form-data" action="/schedule">
                     <input type="hidden" value="${_csrf.token}" name="_csrf">
                     <div class="form-row">
@@ -220,5 +220,6 @@
             </div>
         </div>
     </div>
+    <#include "parts/footer.ftl">
 
 </@c.page>

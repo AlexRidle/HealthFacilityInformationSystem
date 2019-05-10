@@ -2,6 +2,11 @@
 
 <@c.page>
 <link rel="stylesheet" href="/static/css/style.css">
+    <#if response! == "success">
+    <div class="alert alert-success" role="alert">
+        Пользователь был успешно изменен!
+    </div>
+    </#if>
 <h5 class="mt-3 mb-3 text-center featurette-heading">Список зарегистрированных пользователей:</h5>
 <div class="mb-3 ml-3 mr-3">
     <table class="table table-striped">
@@ -28,4 +33,6 @@
         </tbody>
     </table>
 </div>
+    <#include "parts/footer.ftl">
+
 </@c.page>

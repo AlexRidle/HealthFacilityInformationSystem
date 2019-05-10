@@ -106,4 +106,6 @@
         </div>
     </div>
 </div>
+    <#include "parts/footer.ftl">
+
 </@c.page>

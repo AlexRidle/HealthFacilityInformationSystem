@@ -52,37 +52,22 @@
         <!-- Three columns of text below the carousel -->
         <div class="row">
             <div class="col-lg-4">
-                <svg class="bd-placeholder-img rounded-circle" width="140" height="140"
-                     xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false">
-                    <title>Placeholder</title>
-                    <rect width="100%" height="100%" fill="#777"></rect>
-                    <text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>
-                </svg>
-                <h2>Some info</h2>
-                <p>Information about something</p>
-                <p><a class="btn btn-secondary" href="#" role="button">Link on it »</a></p>
+                <img src="/img/150x150/ticket.jpg" class="d-block rounded-img-150" alt="ticket">
+                <h2>Талон онлайн</h2>
+                <p>Закажите талон прямо сейчас не выходя из дома</p>
+                <p><a class="btn btn-secondary" href="/ticket" role="button">Записаться »</a></p>
             </div><!-- /.col-lg-4 -->
             <div class="col-lg-4">
-                <svg class="bd-placeholder-img rounded-circle" width="140" height="140"
-                     xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false">
-                    <title>Placeholder</title>
-                    <rect width="100%" height="100%" fill="#777"></rect>
-                    <text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>
-                </svg>
-                <h2>Some info 2</h2>
-                <p>Information about something 2</p>
-                <p><a class="btn btn-secondary" href="#" role="button">Link on it »</a></p>
+                <img src="/img/150x150/news.jpg" class="d-block rounded-img-150" alt="news">
+                <h2>Свежие новости</h2>
+                <p>Будьте в курсе актуальных событий нашего учреждения</p>
+                <p><a class="btn btn-secondary" href="/news" role="button">Прочитать »</a></p>
             </div><!-- /.col-lg-4 -->
             <div class="col-lg-4">
-                <svg class="bd-placeholder-img rounded-circle" width="140" height="140"
-                     xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false">
-                    <title>Placeholder</title>
-                    <rect width="100%" height="100%" fill="#777"></rect>
-                    <text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>
-                </svg>
-                <h2>Some info 3</h2>
-                <p>Information about something 3</p>
-                <p><a class="btn btn-secondary" href="#" role="button">Link on it »</a></p>
+                <img src="/img/150x150/account.jpg" class="d-block rounded-img-150" alt="account">
+                <h2>Личный аккаунт</h2>
+                <p>Получите доступ к расширенному функционалу сайта</p>
+                <p><a class="btn btn-secondary" href="/registration" role="button">Зарегистрироваться »</a></p>
             </div><!-- /.col-lg-4 -->
         </div><!-- /.row -->
 
@@ -93,17 +78,14 @@
 
         <div class="row featurette">
             <div class="col-md-7">
-                <h2 class="featurette-heading">Some info about <span
-                        class="text-muted">something</span>.</h2>
-                <p class="lead">Description about this awesome thing</p>
+                <h2 class="featurette-heading">Новейшее оборудование</h2>
+                <p class="lead">В нашем учреждении используется современное оборудование, дающее возможность проведения сложных обследований.
+                    Мы следим за выходом новинок на рынке медицинского оборудования,
+                    пополняем наличие техники исключительно высококачественными приборами и устройсвами,
+                    а также поддерживаем их исправность и работу на высоком уровне</p>
             </div>
             <div class="col-md-5">
-                <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
-                     height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false">
-                    <title>Placeholder</title>
-                    <rect width="100%" height="100%" fill="#eee"></rect>
-                    <text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text>
-                </svg>
+                <img src="/img/500x500/equipment.jpg" class="d-block w-100" alt="equipment">
             </div>
         </div>
 
@@ -111,17 +93,13 @@
 
         <div class="row featurette">
             <div class="col-md-7 order-md-2">
-                <h2 class="featurette-heading">Some info about <span
-                        class="text-muted">another thing</span>.</h2>
-                <p class="lead">Description about another awesome thing</p>
+                <h2 class="featurette-heading">Квалифицированный персонал</h2>
+                <p class="lead">Наш медицинский персонал состоит исключительно из высококлассных специалистов.
+                    Несмотря на высшую степень образования, наши врачи постоянно совершенствуются,
+                    проходя курсы повышения квалификации и участвуя в различных конференциях. </p>
             </div>
             <div class="col-md-5 order-md-1">
-                <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
-                     height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false">
-                    <title>Placeholder</title>
-                    <rect width="100%" height="100%" fill="#eee"></rect>
-                    <text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text>
-                </svg>
+                <img src="/img/500x500/doctors.jpg" class="d-block w-100" alt="doctors">
             </div>
         </div>
 
@@ -129,17 +107,14 @@
 
         <div class="row featurette">
             <div class="col-md-7">
-                <h2 class="featurette-heading">Some info about <span
-                        class="text-muted">3rd thing</span>.</h2>
-                <p class="lead">Description about it</p>
+                <h2 class="featurette-heading">Современные методы лечения</h2>
+                <p class="lead">Благодаря высококлассным специалистам и современному оборудрованию,
+                    нам удается применять самые современные методы лечения,
+                    которые признаны во всех высокоразвитых странах.
+                    Эта возможность позволяет оказывать качественную помощь нашим клиентам</p>
             </div>
             <div class="col-md-5">
-                <svg class="bd-placeholder-img-lg bd-placeholder-img featurette-image img-fluid mx-auto" width="500"
-                     height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false">
-                    <title>Placeholder</title>
-                    <rect width="100%" height="100%" fill="#eee"></rect>
-                    <text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text>
-                </svg>
+                <img src="/img/500x500/methods.jpg" class="d-block w-100" alt="methods">
             </div>
         </div>
 
@@ -149,7 +124,7 @@
 
     </div>
     <footer class="container">
-        <p class="float-right"><a href="#">Back to top</a></p>
-        <p>© 2019 Company, Inc. · <a href="#">Contacts</a> · <a href="#">Something</a></p>
+        <p class="float-right"><a href="#">К началу страницы</a></p>
+        <p>© 2019 Health Facility · <a href="/contacts">Контакты</a> · <a href="/about">О нас</a></p>
     </footer>
 </@c.page>
