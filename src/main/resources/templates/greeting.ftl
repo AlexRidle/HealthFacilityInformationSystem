@@ -10,30 +10,32 @@
         </ol>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="/img/banner1.jpg" class="d-block w-100" alt="facility">
+                <img src="/img/banners/banner1.jpg" class="d-block w-100" alt="facility">
                 <div class="carousel-caption d-none d-md-block">
                     <div class="carousel-caption text-right">
-                        <h1 class="carousel-text-shadow">Some information</h1>
-                        <p class="carousel-text-shadow">Some information but smaller</p>
+                        <h1 class="carousel-text-shadow">На службе вашего здоровья</h1>
+                        <p class="carousel-text-shadow">Мы гарантируем Вам качество обслуживания и внимание к каждому клиенту! </p>
                     </div>
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="/img/banner2.jpg" class="d-block w-100" alt="technologies">
+                <img src="/img/banners/banner2.jpg" class="d-block w-100" alt="technologies">
                 <div class="carousel-caption d-none d-md-block">
                     <div class="carousel-caption text-right">
-                        <h1 class="carousel-text-shadow">Some information 2</h1>
-                        <p class="carousel-text-shadow">Some information but smaller 2</p>
+                        <h1 class="carousel-text-shadow">Расширение возможностей!</h1>
+                        <p class="carousel-text-shadow">Теперь у Вас появилась возможность заказать талон онлайн за считанные минуты!</p>
+                        <h2><a class="btn btn-lg btn-outline-light" href="ticket" role="button">Заказать талон</a></h2>
                     </div>
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="/img/banner3.jpg" class="d-block w-100" alt="equipment">
+                <img src="/img/banners/banner3.jpg" class="d-block w-100" alt="equipment">
                 <div class="carousel-caption d-none d-md-block">
                     <div class="carousel-caption text-right">
-                        <h1 class="carousel-text-shadow">Some information 3</h1>
-                        <p class="carousel-text-shadow">Some information but smaller 3</p>
-                        <h2><a class="btn btn-lg btn-light" href="main" role="button">Intrigue button</a></h2>
+                        <h1 class="carousel-text-shadow">Мы постоянно совершенствуемся! </h1>
+                        <p class="carousel-text-shadow">Мы заинтересованы в высоком уровне обслуживания. Присылайте свои предложения и пожелания по адресу support@healthfacility.com или зарегистрируйтесь и оставьте их на сайте</p>
+                        <h2><a class="btn btn-lg btn-outline-dark" href="support" role="button">Оставить отзыв</a></h2>
+
                     </div>
                 </div>
             </div>

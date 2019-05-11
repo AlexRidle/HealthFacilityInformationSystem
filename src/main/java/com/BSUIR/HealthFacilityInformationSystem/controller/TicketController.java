@@ -271,67 +271,9 @@ public class TicketController {
             model.addAttribute("user", user);
             model.addAttribute("departments", Department.values());
             return "ticket/ticket";
-
-//            model.addAttribute("response", "success");
-//        } catch (DateTimeParseException e) {
-//            model.addAttribute("response", "error");
-//            e.printStackTrace();
-//        }
-//        model.addAttribute("departments", Department.values());
-//        //if not registered show error
-//        return "ticket/ticket";
         }
 
     }
-
-//    @PostMapping
-//    public String addTicket(
-//            @AuthenticationPrincipal User user,
-//            @RequestParam Map<String, String> form,
-//            Model model) {
-//
-//        //if date is not registered
-//        try {
-//            Ticket ticket;
-//            if (user != null) {
-//                ticket = new Ticket(user,
-//                        doctorRepository.findById(1l).get(),
-//                        Department.valueOf(form.get("department")),
-//                        user.getPhone(),
-//                        user.getFirstName(),
-//                        user.getMiddleName(),
-//                        user.getLastName(),
-//                        user.getBirthDate(),
-//                        user.getAddress(),
-//                        user.getHouse(),
-//                        user.getRoom(),
-//                        scheduleRepository.findById(1l).get(),
-//                        null);
-//            } else {
-//                ticket = new Ticket(null,
-//                        doctorRepository.findById(1l).get(),
-//                        Department.valueOf(form.get("department")),
-//                        form.get("phone"),
-//                        form.get("firstName"),
-//                        form.get("middleName"),
-//                        form.get("lastName"),
-//                        LocalDate.parse(form.get("birthDate")),
-//                        form.get("address"),
-//                        form.get("house"),
-//                        form.get("room"),
-//                        scheduleRepository.findById(1l).get(),
-//                        null);
-//            }
-//            ticketRepository.save(ticket);
-//            model.addAttribute("response", "success");
-//        } catch (DateTimeParseException e) {
-//            model.addAttribute("response", "error");
-//            e.printStackTrace();
-//        }
-//        model.addAttribute("departments", Department.values());
-//        //if not registered show error
-//        return "ticket/ticket";
-//    }
 
     @PostMapping("/ticket/edit/{ticket}")
     public String saveEditedTicket(
