@@ -16,7 +16,7 @@
 <h5 class="mt-3 mb-3 text-center featurette-heading"><b>Онлайн заказ талона</b></h5>
 <h5 class="mt-3 mb-3 text-center lead">Заполните контактную информацию и выберите необходимое отделение</h5>
 
-<div class="container">
+<div class="container mt-5">
     <form method="post" enctype="multipart/form-data" action="/ticket">
         <#if known>
             <@mainTicket />
