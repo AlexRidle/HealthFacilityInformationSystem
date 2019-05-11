@@ -14,11 +14,11 @@
         </div>
     </#if>
     <h5 class="mt-3 mb-3 text-center featurette-heading">Талоны</h5>
-    <div class="container">
+    <div class="container mt-5">
         <a class="btn btn-secondary btn-lg btn-block mb-3" data-toggle="collapse" href="#createSchedule" role="button"
            aria-expanded="false"
            aria-controls="collapseExample">Добавить новый талон</a>
-        <div class="collapse show" id="createSchedule">
+        <div class="collapse <#if response??>show</#if>" id="createSchedule">
                 <form method="post" enctype="multipart/form-data" action="/schedule">
                     <input type="hidden" value="${_csrf.token}" name="_csrf">
                     <div class="form-row">
@@ -39,7 +39,7 @@
                             <label for="validationScheduleDates">Даты</label>
                             <input type="text" class="form-control datepicker" id="validationScheduleDates"
                                    name="scheduleDates"
-                                   placeholder="yyyy-mm-dd,yyyy-mm-dd..." required>
+                                   placeholder="ГГГГ-ММ-ДД, ГГГГ-ММ-ДД..." required>
                         </div>
                     </div>
                     <div class="form-row">
@@ -220,5 +220,6 @@
             </div>
         </div>
     </div>
+    <#include "parts/footer.ftl">
 
 </@c.page>

@@ -11,4 +11,6 @@
             <p class="lead">вашеуй четной записи или свяжитесь с системным администратором.</p>
         </div>
     </div>
+    <#include "parts/footer.ftl">
+
 </@c.page>

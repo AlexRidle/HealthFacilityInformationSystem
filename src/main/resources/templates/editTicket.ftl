@@ -14,7 +14,7 @@
     </#if>
     <h5 class="mt-3 mb-3 text-center featurette-heading">Просмотр талона</h5>
 
-<div class="container">
+<div class="container mt-5">
     <form method="post" enctype="multipart/form-data" action="/ticket/edit/${ticket.id}" >
         <input type="hidden" value="${ticket.id}" name="ticketId">
         <div class="form-group row">
@@ -113,4 +113,6 @@
         </div>
     </form>
 </div>
+    <#include "parts/footer.ftl">
+
 </@c.page>

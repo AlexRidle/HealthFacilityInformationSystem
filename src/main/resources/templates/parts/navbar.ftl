@@ -15,8 +15,13 @@
             <li class="nav-item">
                 <a class="nav-link" href="/ticket">Заказ талона</a>
             </li>
+            <#if known>
+                <li class="nav-item">
+                    <a class="nav-link" href="/account">Аккаунт</a>
+                </li>
+            </#if>
             <li class="nav-item">
-                <a class="nav-link" href="/account">Аккаунт</a>
+                <a class="nav-link" href="/support">Оставить отзыв</a>
             </li>
             <#if isEmployee>
             <li class="nav-item dropdown">
@@ -28,6 +33,7 @@
                     </#if>
                 <#if isOperator>
                 <a class="dropdown-item" href="/schedule">Редактор талонов</a>
+                <a class="dropdown-item" href="/feedback">Отзывы клиентов</a>
                 </#if>
                 <#if isAdmin>
                 <a class="dropdown-item" href="/user">Зарегистрированные пользователи</a>

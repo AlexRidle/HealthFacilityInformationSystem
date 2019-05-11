@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="/static/css/style.css">
 <h5 class="mt-3 mb-3 text-center featurette-heading">Изменение пользователя:</h5>
 <h5 class="mt-3 mb-3 text-center featurette-heading"><b>${user.username}</b></h5>
-<div class="container mt-3 mb-3">
+<div class="container mt-5 mb-3">
     <form action="/user/${user.id}" method="post">
         <input type="hidden" value="${user.id}" name="userId">
         <input type="hidden" value="${_csrf.token}" name="_csrf">
@@ -150,5 +150,6 @@
         </div>
     </form>
 </div>
+    <#include "parts/footer.ftl">
 
 </@c.page>

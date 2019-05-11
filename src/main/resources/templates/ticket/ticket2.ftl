@@ -12,7 +12,7 @@
 <h5 class="mt-3 mb-3 text-center featurette-heading"><b>Онлайн заказ талона</b></h5>
 <h5 class="mt-3 mb-3 text-center lead">Выберите нужного врача в нужном вам отделении.</h5>
 
-<div class="container">
+<div class="container mt-5">
     <form method="post" enctype="multipart/form-data" action="/ticket2">
         <#if known>
             <@mainTicket />
@@ -123,6 +123,8 @@
         </div>
     </form>
 </div>
+    <#include "../parts/footer.ftl">
+
 </@c.page>
 
 <#macro mainTicket>

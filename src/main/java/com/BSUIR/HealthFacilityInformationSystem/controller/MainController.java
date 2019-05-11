@@ -56,7 +56,10 @@ public class MainController {
 
     @GetMapping("/news/delete/{post}")
     public String deletePost(@PathVariable NewsPost post) {
-        newsPostRepository.delete(post);
+        try{
+            newsPostRepository.delete(post);
+        } catch (Exception ignored){
+        }
         return "redirect:/news";
     }
 

@@ -8,7 +8,7 @@
 <h5 class="mt-3 mb-3 text-center lead">Данный талон будет сохранен в личном кабинете при наличии аккаунта</h5>
 <h5 class="mt-3 mb-3 text-center lead">Если же у вас его нет - просим запомнить дату приема.</h5>
 
-<div class="container">
+<div class="container mt-5">
         <#if known>
             <@mainTicket />
             <input type="hidden" value="${user.id}" name="userId">
@@ -73,6 +73,8 @@
             <@mainTicket />
         </#if>
 </div>
+    <#include "../parts/footer.ftl">
+
 </@c.page>
 
 <#macro mainTicket>

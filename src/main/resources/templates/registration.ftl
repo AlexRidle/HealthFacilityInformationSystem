@@ -14,7 +14,7 @@
 </div>
     </#if>
 <h5 class="mt-3 mb-3 text-center featurette-heading">Регистрация</h5>
-<div class="container mt-3 mb-3">
+<div class="container mt-5 mb-3">
     <form action="/registration" method="post">
         <div class="form-row">
             <div class="col-md-6 mb-3">
@@ -154,4 +154,5 @@
         <input type="hidden" name="_csrf" value="${_csrf.token}"/>
     </form>
 </div>
+    <#include "parts/footer.ftl">
 </@c.page>
