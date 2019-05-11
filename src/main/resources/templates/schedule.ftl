@@ -39,7 +39,7 @@
                             <label for="validationScheduleDates">Даты</label>
                             <input type="text" class="form-control datepicker" id="validationScheduleDates"
                                    name="scheduleDates"
-                                   placeholder="yyyy-mm-dd,yyyy-mm-dd..." required>
+                                   placeholder="ГГГГ-ММ-ДД, ГГГГ-ММ-ДД..." required>
                         </div>
                     </div>
                     <div class="form-row">
