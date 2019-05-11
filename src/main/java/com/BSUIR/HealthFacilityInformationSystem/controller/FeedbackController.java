@@ -50,6 +50,7 @@ public class FeedbackController {
     @PreAuthorize("hasAnyAuthority('ADMIN','OPERATOR')")
     public String feedback(Model model){
         List<Feedback> feedbacks = feedbackRepository.findAll();
+        Collections.reverse(feedbacks);
         model.addAttribute("feedbacks", feedbacks);
         return "feedback";
     }
