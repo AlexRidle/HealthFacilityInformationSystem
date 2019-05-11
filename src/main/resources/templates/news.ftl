@@ -11,7 +11,7 @@
     <#else>
         <h3 class="mt-3 mb-3 text-center featurette-heading">На данный момент новостей нет</h3>
     </#if>
-    <div class="container">
+    <div class="container mt-5">
         <form method="get" action="/news">
             <div class="input-group mb-3">
                 <input type="text" class="form-control" name="filter" placeholder="Введите тэг для поиска"

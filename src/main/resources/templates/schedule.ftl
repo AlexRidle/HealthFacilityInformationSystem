@@ -14,7 +14,7 @@
         </div>
     </#if>
     <h5 class="mt-3 mb-3 text-center featurette-heading">Талоны</h5>
-    <div class="container">
+    <div class="container mt-5">
         <a class="btn btn-secondary btn-lg btn-block mb-3" data-toggle="collapse" href="#createSchedule" role="button"
            aria-expanded="false"
            aria-controls="collapseExample">Добавить новый талон</a>

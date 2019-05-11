@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="/static/css/style.css">
 <h5 class="mt-3 mb-3 text-center featurette-heading"><b>${doctor.user.fullName}</b></h5>
 <h5 class="mt-3 mb-3 text-center featurette-heading">${doctor.department}</h5>
-<div class="container">
+<div class="container mt-5">
     <a class="btn btn-success btn-lg btn-block mb-3" data-toggle="collapse" href="#unregisteredSchedule" role="button"
        aria-expanded="false"
        aria-controls="collapseExample">Открыть доступные талоны</a>
